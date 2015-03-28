@@ -121,8 +121,7 @@ body{
 #footer_div{
     position: fixed;
     bottom: 0;
-    left: 185px; /* tells your footer to be horizontally centered */
-    /* This need to be half of the width (+2px because of the 1px added as a border for both left and right site in this case) */
+    left: 183px;
     border: solid 1px black;
 }
 
@@ -140,7 +139,8 @@ body{
     position:fixed;
     top: 234px;
     width: 1000px;
-    height: 100%;
+    height: 60%;
+    overflow: auto;
 }
 
 
@@ -161,7 +161,29 @@ body{
 
 .news_header{
     font-family: 'Roboto', italic;
-    font-size: 10pt;
+    font-size: 13pt;
     color: black;
     padding-left: 10px;
+
+}
+
+.news_item{
+    font-family: 'Roboto', normal;
+    font-style: italic;
+    font-size: 10pt;
+    color: black;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+.detaljnijeLink{
+    float:right;
+    font-family: 'Roboto', normal;
+    font-size: 10pt;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.newsNotOne{
+    margin-top:5px;
 }
