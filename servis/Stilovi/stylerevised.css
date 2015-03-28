@@ -1,3 +1,4 @@
+
 @import url(http://fonts.googleapis.com/css?family=Roboto:700);
 
 body{
@@ -70,7 +71,7 @@ body{
 #navbar_div{
     position:fixed;
     top:170px;
-    left:185 px;
+    left:185px;
     border: solid 1px black;
     background-color: #e6e1e1;
 }
