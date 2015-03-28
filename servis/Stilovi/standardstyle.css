@@ -1,0 +1,110 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:700);
+body{
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: white;
+}
+
+ul{
+    list-style-type: none;
+}
+
+/* images */
+#aparat_slika{
+    float:right;
+}
+
+#logo_slika{
+    float:left;
+}
+
+#navbar_bg{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: -1;
+}
+
+/* div style */
+#headers{
+    background-color: #e6e1e1;
+    width: 100%;
+    float: right;
+    border: 1px solid black;
+}
+
+#naziv_firme{
+    font-family: 'Roboto', bold;
+    font-size: 30pt;
+    float: top;
+    margin-top: 10px;
+}
+
+#navbar{
+    width: 100%;
+    border: solid 1px black;
+    float: right;
+    padding: 0;
+    text-align: center;
+}
+
+#navbar ul{
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar ul li{
+    margin: 0;
+    padding: 50px;
+    display: inline;
+}
+#navbar  a:visited{
+    margin: 0;
+    padding: .3em .4em .3em .4em;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+    color: #227755;
+}
+
+#navbar ul a:active{
+    margin: 0;
+    padding: .3em .4em .3em .4em;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+    color: #227755;
+}
+
+#navbar ul a:hover{
+    margin: 0;
+    padding: .3em .4em .3em .4em;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+    color: #f6f0cc;
+    background-color: #227755;
+}
+
+#footers{
+    background-color: aqua;
+}
+
+/* Klasa za male natpise za firme */
+.djelatnost{
+    font-family: 'Roboto', italic;
+    font-size: 10pt;
+    float:top;
+    margin-top: -40px;
+}
+
+.linkSize{
+    height: 120px;
+}
+
+
+
+
