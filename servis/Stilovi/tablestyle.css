@@ -35,7 +35,6 @@ body{
 #naziv_firme{
     font-family: 'Roboto', bold;
     font-size: 30pt;
-    float: top;
     margin-top: 10px;
 }
 
@@ -51,7 +50,6 @@ body{
 #djelatnost_firme{
     font-family: 'Roboto', italic;
     font-size: 10pt;
-    float:top;
     margin-top: -40px;
     color: black;
 }
@@ -150,7 +148,6 @@ body{
 .djelatnost{
     font-family: 'Roboto', italic;
     font-size: 10pt;
-    float:top;
     color: black;
 }
 
