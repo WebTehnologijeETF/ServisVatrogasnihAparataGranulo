@@ -130,11 +130,11 @@ body{
     position:relative;
 }
 
-#news_container{
+#table_container{
     position:relative;
 }
 
-#news_div{
+#table_div{
     border: solid 1px black;
     background-color: #e6e1e1;
     position:fixed;
@@ -187,4 +187,38 @@ body{
 
 .newsNotOne{
     margin-top:5px;
+}
+
+.tableStyle{
+    margin: 0 auto;
+    font-family: 'Roboto', normal;
+    font-size: 10pt;
+    color: black;
+    width: 80%;
+}
+
+.tableHeaders{
+    text-align: center;
+    font-family: 'Roboto', normal;
+    color: black;
+}
+
+.tabledata{
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'Roboto', normal;
+    font-size: 10pt;
+    color: black;
+    border: solid 1px black;
+    border-spacing: 0px;
+}
+
+.tableheaderdata{
+    border: solid 1px black;
+    text-align: center;
+}
+
+.headerRow{
+    text-align: center;
+    border: solid 1px black;
 }
