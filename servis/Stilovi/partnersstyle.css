@@ -1,0 +1,186 @@
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:700);
+
+body{
+    background-color: white;
+}
+
+/* Image styling */
+
+#aparat_slika{
+    float:right;
+}
+
+#logo_slika{
+    float:left;
+}
+
+#navbar_bg{
+    width: 100%;
+    margin-bottom: -10px;
+    padding: 0;
+}
+
+#footer_image{
+    width: 100%;
+    margin: 0;
+    margin-bottom: -10px;
+    padding: 0;
+}
+
+/* Text styling */
+
+#naziv_firme{
+    font-family: 'Roboto', bold;
+    font-size: 30pt;
+    margin-top: 10px;
+}
+
+#footer_text{
+    position: fixed;
+    bottom:0;
+    left: 43%;
+    margin-bottom: 20px;
+    z-index: 100;
+    text-align: center;
+}
+
+#djelatnost_firme{
+    font-family: 'Roboto', italic;
+    font-size: 10pt;
+    margin-top: -40px;
+    color: black;
+}
+
+/* Div styling */
+
+#wrapper_div{
+    position: relative;
+}
+
+#header_div{
+    height: 150px;
+    background-color: #e6e1e1;
+    border: solid 1px black;
+}
+
+#navbar_div{
+    position:fixed;
+    top:170px;
+    left:183px;
+    border: solid 1px black;
+    background-color: #e6e1e1;
+}
+
+#navbar_containter{
+    font-size: 0;
+}
+
+#navbar_div ul{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+#navbar_div ul li{
+    margin: 0;
+    padding: 60px;
+    display: inline;
+}
+#navbar_div  a:visited{
+    margin: 0;
+    padding: .3em .4em .3em .4em;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+}
+
+#navbar_div ul a:active{
+    margin: 0;
+    padding: .3em .4em .3em .4em;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+}
+
+#navbar_div ul a:hover{
+    margin: 0;
+    padding: .3em .4em .3em .4em;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: medium;
+    background-color: #227755;
+}
+
+#footer_div{
+    position: fixed;
+    bottom: 0;
+    left: 183px;
+    border: solid 1px black;
+}
+
+#footer_container{
+    position:relative;
+}
+
+#partners_container{
+    position:relative;
+}
+
+#partners_div{
+    border: solid 1px black;
+    background-color: #e6e1e1;
+    position:fixed;
+    top: 234px;
+    width: 1000px;
+    height: 60%;
+    overflow: auto;
+}
+
+/* Paragraph styling */
+
+#partneriNatpis{
+    margin-left: 10px;
+}
+
+/* Klase */
+
+.djelatnost{
+    font-family: 'Roboto', italic;
+    font-size: 10pt;
+    color: black;
+}
+
+.linkHover{
+    font-family: 'Roboto', italic;
+    font-size: 10pt;
+    color: black;
+}
+
+.linkHover:hover{
+    color: red;
+}
+
+.container{
+    width:1000px;
+    margin: 0 auto;
+    overflow:hidden;
+}
+
+.imageListItems{
+    background: url("/servis/Resursi/Slike/bullet_image_fire_extinguisher.png") no-repeat left top;
+    height: 54px;
+    padding-left: 60px;
+    padding-top: 3px;
+}
+
+.no_bullet_list{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+
