@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="/servis/Stilovi/stylerevised.css">
+    <link rel="stylesheet" href="/servis/Stilovi/contactstyle.css">
     <title>Granulo - RE d.o.o</title>
 </head>
 <body>
@@ -24,9 +24,20 @@
             <img id="navbar_bg" src="/servis/Resursi/Slike/horizontal_stripe.png" alt="Slika nije ucitana">
         </div>
     </div>
-    <div id="news_container" class="container">
-        <div id="news_div">
+    <div id="contact_container" class="container">
+        <div id="contact_div">
+            <form action="contact.php" method="post" class="formElements">
+                Vaše ime<br>
+                <input type="text" id="cf_name"><br>
+                Vaša e - mail adresa<br>
+                <input type="text" id="cf_email"><br>
+                Poruka<br>
+                <textarea id="cf_message">
 
+                </textarea><br>
+                <input type="submit" value="Pošalji">
+                <input type="reset" value="Obriši">
+            </form>
         </div>
     </div>
     <div id="footer_container" class="container">

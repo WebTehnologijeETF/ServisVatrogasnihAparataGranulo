@@ -128,11 +128,11 @@ body{
     position:relative;
 }
 
-#news_container{
+#contact_container{
     position:relative;
 }
 
-#news_div{
+#contact_div{
     border: solid 1px black;
     background-color: #e6e1e1;
     position:fixed;
@@ -140,9 +140,13 @@ body{
     width: 1000px;
     height: 60%;
     overflow: auto;
+    text-align: center;
 }
 
-
+#cf_message {
+    height: 200px;
+    width: 400px;
+}
 /* Klase */
 
 .djelatnost{
@@ -157,35 +161,8 @@ body{
     overflow:hidden;
 }
 
-.news_header{
+.formElements{
     font-family: 'Roboto', italic;
-    font-size: 13pt;
-    color: black;
-    padding-left: 10px;
-
-}
-
-.news_item{
-    font-family: 'Roboto', normal;
-    font-style: italic;
     font-size: 10pt;
     color: black;
-    padding-left: 30px;
-    margin-bottom: 10px;
-}
-
-.detaljnijeLink{
-    float:right;
-    font-family: 'Roboto', normal;
-    font-size: 10pt;
-    color: black;
-    margin-bottom: 10px;
-}
-
-.detaljnijeLink:hover{
-    color:red;
-}
-
-.newsNotOne{
-    margin-top:5px;
 }
