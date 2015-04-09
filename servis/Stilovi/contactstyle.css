@@ -1,21 +1,19 @@
-
 @import url(http://fonts.googleapis.com/css?family=Roboto:700);
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
 
 body{
     background-color: white;
+    margin: 0;
+    height: 100%;
+}
+
+html{
+    height: 100%;
 }
 
 
 
 /* Image styling */
-
-#aparat_slika{
-    float:right;
-}
-
-#logo_slika{
-    float:left;
-}
 
 #navbar_bg{
     width: 100%;
@@ -23,10 +21,12 @@ body{
     padding: 0;
 }
 
+
 #footer_image{
     width: 100%;
     margin: 0;
     margin-bottom: -10px;
+    height: 50px;
     padding: 0;
 }
 
@@ -36,6 +36,13 @@ body{
     font-family: 'Roboto', bold;
     font-size: 30pt;
     margin-top: 10px;
+}
+
+#header_logo_image{
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #footer_text{
@@ -61,108 +68,150 @@ body{
 }
 
 #header_div{
-    height: 150px;
-    background-color: #e6e1e1;
-    border: solid 1px black;
+    width: 100%;
+    margin: 0;
+    background-image: url("/servis/Resursi/Slike/header_bg.png");
+    background-repeat: no-repeat;
 }
 
 #navbar_div{
-    position:fixed;
-    top:170px;
-    left:183px;
-    border: solid 1px black;
-    background-color: #e6e1e1;
+    width: 100%;
+    height: 50px;
+    background-color: #f92a28;
+    background-size: contain;
 }
 
-#navbar_containter{
+.nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.nav li {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.2em;
+    line-height: 40px;
+    padding-left: 0;
+    height: 50px;
+    border-bottom: 1px solid #888;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: .3s background-color;
+}
+
+.nav a:hover {
+    background-color: #e52523;
+}
+
+.nav a.active {
+    background-color: #fff;
+    color: #444;
+    cursor: default;
+}
+
+@media screen and (min-width: 600px) {
+    .nav li {
+        width: 120px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+    }
+}
+
+.nav li {
+    display: inline-block;
+    margin-right: -4px;
+}
+
+.nav li ul{
+    position:absolute;
+    visibility:hidden;
+    z-index: 300;
+    margin:0;
+    padding:0;
+}
+
+.nav li ul li{
+    display:block;
+    z-index: 300;
+    float:none;
+}
+
+.nav li ul li a:link, .nav li ul li a:visited {
+    background-color:#f92a28;
+    z-index: 300;
+    width:auto;
+}
+
+.nav li ul li a:hover {
+    background-color:#e52523;
+    z-index: 300;
+}
+
+#navbar_container{
     font-size: 0;
 }
 
-#navbar_div ul{
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-    list-style: none;
-    margin-top: 20px;
-    padding: 0;
-}
-
-#navbar_div ul li{
-    margin: 0;
-    padding: 60px;
-    display: inline;
-}
-#navbar_div  a:visited{
-    margin: 0;
-    padding: .3em .4em .3em .4em;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: medium;
-}
-
-#navbar_div ul a:active{
-    margin: 0;
-    padding: .3em .4em .3em .4em;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: medium;
-}
-
-#navbar_div ul a:hover{
-    margin: 0;
-    padding: .3em .4em .3em .4em;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: medium;
-    background-color: #227755;
-}
-
-#footer_div{
-    position: fixed;
-    bottom: 0;
-    left: 183px;
-    border: solid 1px black;
-}
-
-#footer_container{
-    position:relative;
-}
-
-#contact_container{
-    position:relative;
-}
-
-#contact_div{
-    border: solid 1px black;
-    background-color: #e6e1e1;
-    position:fixed;
-    top: 234px;
-    width: 1000px;
-    height: 60%;
-    overflow: auto;
-    text-align: center;
-}
 
 #cf_message {
     height: 200px;
     width: 400px;
 }
+
+#footer_div{
+    width: 100%;
+    height: 50px;
+    position:relative;
+}
+
+#footer_container{
+    position:relative;
+    height: 100px;
+}
+
+#contact_container{
+    position:relative;
+    background-color: #fb413d;
+    margin-top:50px;
+    height: 1000px;
+    text-align: center;
+
+}
+
+#contact_div{
+    background-color: #fb413d;
+    width: 100%;
+    height: 100%;
+}
+
+
 /* Klase */
 
 .djelatnost{
-    font-family: 'Roboto', italic;
+    font-family: 'Oxygen', sans-serif;
     font-size: 10pt;
-    color: black;
+    color: white;
 }
 
 .container{
-    width:1000px;
-    margin: 0 auto;
-    overflow:hidden;
+    width:100%;
+    min-height: 100%;
+    margin-bottom: -50px;
+    position: relative;
+}
+
+.clearfooter {
+    height: 50px;
+    clear: both;
 }
 
 .formElements{
-    font-family: 'Roboto', italic;
-    font-size: 10pt;
-    color: black;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 12pt;
+    color: white;
 }

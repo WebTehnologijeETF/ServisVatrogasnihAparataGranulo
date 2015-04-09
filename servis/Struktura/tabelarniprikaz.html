@@ -3,28 +3,37 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/tablestyle.css">
+    <script type="text/javascript" src="/servis/Skripte/jquery.js"></script>
+    <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
 <body>
 <div id="wrapper_div" class="container">
     <div id="header_div">
-        <img id="aparat_slika" src="/servis/Resursi/Slike/aparat_slika.png" alt="Slika nije ucitana">
-        <img id="logo_slika" src="/servis/Resursi/Slike/granulo_logo.png" alt="Slika nije ucitana">
-        <p id="naziv_firme">GRANULO - RE d.o.o</p>
-        <p id="djelatnost_firme" class="djelatnost">Promet, inženjering i servis protivpožarnih uređaja<br>Bojnička 47, Sarajevo</p>
+        <img id="header_logo_image" src="/servis/Resursi/Slike/header_logo.png" alt="Slika nije ucitana">
     </div>
     <div id="navbar_container" class="container">
-        <div id="navbar_div">
+        <div id="navbar_div" class="nav">
             <ul id="lista_meni">
-                <li ><a class="djelatnost" href="/servis/Struktura/indexrevised.html">Novosti iz oblasti zaštite od požara</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/tabelarniprikaz.html">Cjenovnik</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">Naši partneri</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/kontakt.html">Kontaktirajte nas</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/indexrevised.html">NOVOSTI</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/tabelarniprikaz.html">CJENOVNIK</a></li>
+                <li id="drpdown" ><a class="djelatnost" href="/servis/Struktura/ostalo.html">NAŠI PARTNERI</a>
+                    <ul >
+                        <li><a class="djelatnost" href="http://www.abcfireinc.net/">ABC Fire Inc.</a></li>
+                        <li><a class="djelatnost" href="http://www.abcofire.com/">ABCO Fire</a></li>
+                        <li><a class="djelatnost" href="http://www.silcofireprotection.com/">Silco Fire Protection</a></li>
+                    </ul>
+                </li>
+                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">NAŠE USLUGE</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">REFERENCE</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/kontakt.html">KONTAKT</a></li>
             </ul>
-            <img id="navbar_bg" src="/servis/Resursi/Slike/horizontal_stripe.png" alt="Slika nije ucitana">
         </div>
     </div>
-    <div id="table_container" class="container">
+    <div id="table_container">
+        <p id="news_item3" class="news_item">Ovo je naš cjenovnik zajedno sa količinama pojedinih artikala.<br>
+        Sve cijene su u KM.</p>
         <div id="table_div">
             <table class="tableStyle">
                 <tr class="headerRow" >
@@ -63,12 +72,11 @@
             </table>
         </div>
     </div>
-    <div id="footer_container" class="container">
-        <div id="footer_div">
-            <img id="footer_image" src="/servis/Resursi/slike/horizontal_stripe.png" alt="Slika nije ucitana">
-            <p id="footer_text" class="djelatnost">Copyright &copy; Eldar Granulo 2015.</p>
-        </div>
-    </div>
+    <div class="clearfooter"></div>
+</div>
+<div id="footer_div">
+    <img id="footer_image" src="/servis/Resursi/slike/footer_bg.png" alt="Slika nije ucitana">
+    <p id="footer_text" class="djelatnost">Copyright &copy; Eldar Granulo 2015.</p>
 </div>
 </body>
 </html>

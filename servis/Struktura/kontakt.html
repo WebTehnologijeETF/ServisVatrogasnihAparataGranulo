@@ -3,49 +3,66 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/contactstyle.css">
+    <script type="text/javascript" src="/servis/Skripte/jquery.js"></script>
+    <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
+    <script type="text/javascript" src="/servis/Skripte/validate.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
 <body>
 <div id="wrapper_div" class="container">
     <div id="header_div">
-        <img id="aparat_slika" src="/servis/Resursi/Slike/aparat_slika.png" alt="Slika nije ucitana">
-        <img id="logo_slika" src="/servis/Resursi/Slike/granulo_logo.png" alt="Slika nije ucitana">
-        <p id="naziv_firme">GRANULO - RE d.o.o</p>
-        <p id="djelatnost_firme" class="djelatnost">Promet, inženjering i servis protivpožarnih uređaja<br>Bojnička 47, Sarajevo</p>
+        <img id="header_logo_image" src="/servis/Resursi/Slike/header_logo.png" alt="Slika nije ucitana">
     </div>
     <div id="navbar_container" class="container">
-        <div id="navbar_div">
+        <div id="navbar_div" class="nav">
             <ul id="lista_meni">
-                <li ><a class="djelatnost" href="/servis/Struktura/indexrevised.html">Novosti iz oblasti zaštite od požara</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/tabelarniprikaz.html">Cjenovnik</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">Naši partneri</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/kontakt.html">Kontaktirajte nas</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/indexrevised.html">NOVOSTI</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/tabelarniprikaz.html">CJENOVNIK</a></li>
+                <li id="drpdown" ><a class="djelatnost" href="/servis/Struktura/ostalo.html">NAŠI PARTNERI</a>
+                    <ul >
+                        <li><a class="djelatnost" href="http://www.abcfireinc.net/">ABC Fire Inc.</a></li>
+                        <li><a class="djelatnost" href="http://www.abcofire.com/">ABCO Fire</a></li>
+                        <li><a class="djelatnost" href="http://www.silcofireprotection.com/">Silco Fire Protection</a></li>
+                    </ul>
+                </li>
+                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">NAŠE USLUGE</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">REFERENCE</a></li>
+                <li ><a class="djelatnost" href="/servis/Struktura/kontakt.html">KONTAKT</a></li>
             </ul>
-            <img id="navbar_bg" src="/servis/Resursi/Slike/horizontal_stripe.png" alt="Slika nije ucitana">
         </div>
     </div>
     <div id="contact_container" class="container">
         <div id="contact_div">
-            <form action="contact.php" method="post" class="formElements">
+            <form name="inputForm" onsubmit="return validateInput()" action="contact.php" method="post" class="formElements">
                 Vaše ime<br>
-                <input type="text" id="cf_name"><br>
+                <input type="text" name="Name" id="cf_name" required="true"><br>
                 Vaša e - mail adresa<br>
-                <input type="text" id="cf_email"><br>
+                <input type="text" id="cf_email" name="Email" required="true"><br>
+                Vaš broj telefona<br>
+                <input type="text" id="cf_brojtel" name="Brojtel" required="false"><br>
+                Predmet poruke<br>
+                <select name="Predmet" id="cf_predmet">
+                    <option value="Ponuda">Ponuda</option>
+                    <option value="Kupovina">Kupovina</option>
+                    <option value="Pohvala">Pohvala</option>
+                    <option value="Zalba">Žalba</option>
+                </select><br>
+                Tip komitenta<br>
+                <input name="Tip" type="text" id="cf_tip" disabled="true"><br>
                 Poruka<br>
-                <textarea id="cf_message">
-
+                <textarea name="Poruka" id="cf_message" required="true">
                 </textarea><br>
                 <input type="submit" value="Pošalji">
                 <input type="reset" value="Obriši">
             </form>
         </div>
     </div>
-    <div id="footer_container" class="container">
-        <div id="footer_div">
-            <img id="footer_image" src="/servis/Resursi/slike/horizontal_stripe.png" alt="Slika nije ucitana">
-            <p id="footer_text" class="djelatnost">Copyright &copy; Eldar Granulo 2015.</p>
-        </div>
-    </div>
+    <div class="clearfooter"></div>
+</div>
+<div id="footer_div">
+    <img id="footer_image" src="/servis/Resursi/slike/footer_bg.png" alt="Slika nije ucitana">
+    <p id="footer_text" class="djelatnost">Copyright &copy; Eldar Granulo 2015.</p>
 </div>
 </body>
 </html>
