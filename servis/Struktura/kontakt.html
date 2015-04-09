@@ -42,7 +42,7 @@
                 Vaš broj telefona<br>
                 <input type="text" id="cf_brojtel" name="Brojtel" required="false"><br>
                 Predmet poruke<br>
-                <select name="Predmet" id="cf_predmet">
+                <select name="Predmet" id="cf_predmet" onchange="setToValueFromCmbBox()">
                     <option value="Ponuda">Ponuda</option>
                     <option value="Kupovina">Kupovina</option>
                     <option value="Pohvala">Pohvala</option>
