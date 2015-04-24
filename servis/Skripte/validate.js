@@ -10,70 +10,169 @@ function validateInput(){
     textArea = textArea.replace(/[ ]{2,}/gi," ");
     textArea = textArea.replace(/\n /,"\n");
     document.inputForm.Poruka.value = textArea;
-    if( document.inputForm.Name.value == "")
-    {
-        document.inputForm.Name.setCustomValidity("Morate unijeti ime!");
-        document.inputForm.Name.focus();
-        isValid = false;
-    }
-    else if(containsNumbers(document.inputForm.Name.value)){
-        document.inputForm.Name.setCustomValidity( "Ime ne smije sadržavati brojeve!");
-        document.inputForm.Name.focus();
-        isValid = false;
-    }
-    else{
-        document.inputForm.Name.setCustomValidity("");
-    }
-    if(document.inputForm.Email.value == "" || document.inputForm.Email.value == null){
-        document.inputForm.Email.setCustomValidity("Morate unijeti e - mail!" );
-        document.inputForm.Email.focus();
-        isValid = false;
-    }
-    else if(!mailRegex.test(document.inputForm.Email.value))
-    {
-        document.inputForm.Email.setCustomValidity("Unesite email u pravom formatu!" );
-        document.inputForm.Email.focus();
-        isValid = false;
-    }
-    else{
-        document.inputForm.Email.setCustomValidity("");
-    }
+    /* textarea cleared */
 
-    if(document.inputForm.Brojtel.value != ""){
-        if(document.inputForm.Brojtel.value.length != 9){
-            document.inputForm.Brojtel.setCustomValidity("Telefon mora imati 9 cifara!");
-            document.inputForm.Brojtel.focus();
+    if(document.inputForm.Grad.value == "" || document.inputForm.Opstina.value == ""){
+        if( document.inputForm.Name.value == "")
+        {
+            document.inputForm.Name.setCustomValidity("Morate unijeti ime!");
+            document.inputForm.Name.focus();
             isValid = false;
         }
-        else if(!containsNumbers(document.inputForm.Brojtel.value)){
-            document.inputForm.Brojtel.setCustomValidity("Telefon ne smije sadrzavati slova, brojeve i specijalne znakove!");
-            document.inputForm.Brojtel.focus();
+        else if(containsNumbers(document.inputForm.Name.value)){
+            document.inputForm.Name.setCustomValidity( "Ime ne smije sadržavati brojeve!");
+            document.inputForm.Name.focus();
             isValid = false;
         }
         else{
-            document.inputForm.Brojtel.setCustomValidity("");
+            document.inputForm.Name.setCustomValidity("");
         }
-    }
+        if(document.inputForm.Email.value == "" || document.inputForm.Email.value == null){
+            document.inputForm.Email.setCustomValidity("Morate unijeti e - mail!" );
+            document.inputForm.Email.focus();
+            isValid = false;
+        }
+        else if(!mailRegex.test(document.inputForm.Email.value))
+        {
+            document.inputForm.Email.setCustomValidity("Unesite email u pravom formatu!" );
+            document.inputForm.Email.focus();
+            isValid = false;
+        }
+        else{
+            document.inputForm.Email.setCustomValidity("");
+        }
+        if(document.inputForm.Brojtel.value != ""){
+            if(document.inputForm.Brojtel.value.length != 9){
+                document.inputForm.Brojtel.setCustomValidity("Telefon mora imati 9 cifara!");
+                document.inputForm.Brojtel.focus();
+                isValid = false;
+            }
+            else if(!containsNumbers(document.inputForm.Brojtel.value)){
+                document.inputForm.Brojtel.setCustomValidity("Telefon ne smije sadrzavati slova, brojeve i specijalne znakove!");
+                document.inputForm.Brojtel.focus();
+                isValid = false;
+            }
+            else{
+                document.inputForm.Brojtel.setCustomValidity("");
+            }
+        }
 
-    if(document.inputForm.Poruka.value == ""){
-        document.inputForm.Poruka.setCustomValidity("Morate unijeti tekst poruke!");
-        document.inputForm.Poruka.focus();
-        isValid = false;
+        if(document.inputForm.Poruka.value == ""){
+            document.inputForm.Poruka.setCustomValidity("Morate unijeti tekst poruke!");
+            document.inputForm.Poruka.focus();
+            isValid = false;
+        }
+        else{
+            document.inputForm.Poruka.setCustomValidity("");
+        }
+
+        if(document.inputForm.Tip.value == ""){
+            document.inputForm.Poruka.setCustomValidity("Morate izabrati tip!");
+            document.inputForm.Poruka.focus();
+            isValid = false;
+        }
+        else{
+            document.inputForm.Poruka.setCustomValidity("");
+        }
+        return isValid;
     }
     else{
-        document.inputForm.Poruka.setCustomValidity("");
+        var opstinaIGrad = {
+            'opstina' : document.inputForm.Opstina.value,
+            'mjesto' : document.inputForm.Grad.value
+        };
+        $.ajax({
+            type: 'GET',
+            url: 'http://zamger.etf.unsa.ba/wt/mjesto_opcina.php',
+            data: opstinaIGrad,
+            headers: {'Content-Type' : 'application/javascript'},
+            dataType: 'jsonp'})
+            .done(function(data){
+                if(data[0].Poruka == "Nepostojeće mjesto"){
+                    document.inputForm.Grad.setCustomValidity("Mjesto mora postojati!");
+                    isValid = false;
+                }
+                else if(data[0].Poruka == "Nepostojeća općina"){
+                    document.inputForm.Grad.setCustomValidity("Općina mora postojati!");
+                    isValid = false;
+                }
+                else{
+                    document.inputForm.Grad.setCustomValidity("");
+                    document.inputForm.Opstina.setCustomValidity("");
+                }
+
+
+                if( document.inputForm.Name.value == "")
+                {
+                    document.inputForm.Name.setCustomValidity("Morate unijeti ime!");
+                    document.inputForm.Name.focus();
+                    isValid = false;
+                }
+                else if(containsNumbers(document.inputForm.Name.value)){
+                    document.inputForm.Name.setCustomValidity( "Ime ne smije sadržavati brojeve!");
+                    document.inputForm.Name.focus();
+                    isValid = false;
+                }
+                else{
+                    document.inputForm.Name.setCustomValidity("");
+                }
+                if(document.inputForm.Email.value == "" || document.inputForm.Email.value == null){
+                    document.inputForm.Email.setCustomValidity("Morate unijeti e - mail!" );
+                    document.inputForm.Email.focus();
+                    isValid = false;
+                }
+                else if(!mailRegex.test(document.inputForm.Email.value))
+                {
+                    document.inputForm.Email.setCustomValidity("Unesite email u pravom formatu!" );
+                    document.inputForm.Email.focus();
+                    isValid = false;
+                }
+                else{
+                    document.inputForm.Email.setCustomValidity("");
+                }
+                var opstinaIGrad = {
+                    'opstina' : document.inputForm.Opstina.value,
+                    'mjesto' : document.inputForm.Grad.value
+                };
+
+                if(document.inputForm.Brojtel.value != ""){
+                    if(document.inputForm.Brojtel.value.length != 9){
+                        document.inputForm.Brojtel.setCustomValidity("Telefon mora imati 9 cifara!");
+                        document.inputForm.Brojtel.focus();
+                        isValid = false;
+                    }
+                    else if(!containsNumbers(document.inputForm.Brojtel.value)){
+                        document.inputForm.Brojtel.setCustomValidity("Telefon ne smije sadrzavati slova, brojeve i specijalne znakove!");
+                        document.inputForm.Brojtel.focus();
+                        isValid = false;
+                    }
+                    else{
+                        document.inputForm.Brojtel.setCustomValidity("");
+                    }
+                }
+
+                if(document.inputForm.Poruka.value == ""){
+                    document.inputForm.Poruka.setCustomValidity("Morate unijeti tekst poruke!");
+                    document.inputForm.Poruka.focus();
+                    isValid = false;
+                }
+                else{
+                    document.inputForm.Poruka.setCustomValidity("");
+                }
+
+                if(document.inputForm.Tip.value == ""){
+                    document.inputForm.Poruka.setCustomValidity("Morate izabrati tip!");
+                    document.inputForm.Poruka.focus();
+                    isValid = false;
+                }
+                else{
+                    document.inputForm.Poruka.setCustomValidity("");
+                }
+                return isValid;
+            });
+
     }
 
-    if(document.inputForm.Tip.value == ""){
-        document.inputForm.Poruka.setCustomValidity("Morate izabrati tip!");
-        document.inputForm.Poruka.focus();
-        isValid = false;
-    }
-    else{
-        document.inputForm.Poruka.setCustomValidity("");
-    }
-
-    return isValid;
 }
 
 function containsNumbers(string){

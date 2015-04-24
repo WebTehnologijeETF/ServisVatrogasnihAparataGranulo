@@ -6,6 +6,7 @@
     <script type="text/javascript" src="/servis/Skripte/jquery.js"></script>
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/validate.js"></script>
+    <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
@@ -17,28 +18,32 @@
     <div id="navbar_container" class="container">
         <div id="navbar_div" class="nav">
             <ul id="lista_meni">
-                <li ><a class="djelatnost" href="/servis/Struktura/indexrevised.html">NOVOSTI</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/tabelarniprikaz.html">CJENOVNIK</a></li>
-                <li id="drpdown" ><a class="djelatnost" href="/servis/Struktura/ostalo.html">NAŠI PARTNERI</a>
+                <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/indexrevised.html')">NOVOSTI</a></li>
+                <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/tabelarniprikaz.html')">CJENOVNIK</a></li>
+                <li id="drpdown" ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/ostalo.html')">NAŠI PARTNERI</a>
                     <ul >
                         <li><a class="djelatnost" href="http://www.abcfireinc.net/">ABC Fire Inc.</a></li>
                         <li><a class="djelatnost" href="http://www.abcofire.com/">ABCO Fire</a></li>
                         <li><a class="djelatnost" href="http://www.silcofireprotection.com/">Silco Fire Protection</a></li>
                     </ul>
                 </li>
-                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">NAŠE USLUGE</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/ostalo.html">REFERENCE</a></li>
-                <li ><a class="djelatnost" href="/servis/Struktura/kontakt.html">KONTAKT</a></li>
+                <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/ostalo.html')">NAŠE USLUGE</a></li>
+                <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/ostalo.html')">REFERENCE</a></li>
+                <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/kontakt.html')">KONTAKT</a></li>
             </ul>
         </div>
     </div>
     <div id="contact_container" class="container">
         <div id="contact_div">
-            <form name="inputForm"  action="contact.php" method="post" class="formElements">
+            <form name="inputForm"  method="post" class="formElements">
                 Vaše ime<br>
                 <input type="text" name="Name" id="cf_name"><br>
                 Vaša e - mail adresa<br>
                 <input type="text" id="cf_email" name="Email"><br>
+                Vaša opština<br>
+                <input type="text" name="Opstina" id="cf_opstina"><br>
+                Vaš grad<br>
+                <input type="text" name="Grad" id="cf_grad"><br>
                 Vaš broj telefona<br>
                 <input type="text" id="cf_brojtel" name="Brojtel"><br>
                 Predmet poruke<br>
