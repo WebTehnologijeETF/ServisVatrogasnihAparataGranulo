@@ -260,3 +260,7 @@ html{
     text-align: center;
     border: solid 1px black;
 }
+
+.centeredButtons{
+    text-align: center;
+}
