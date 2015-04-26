@@ -88,12 +88,65 @@ function addProduct(){
     requestObject.send("akcija=dodavanje" + "&brindexa=16390&proizvod=" + JSON.stringify(product));
 }
 
-function deleteProduct(productID){
+function deleteProduct(){
 
+    var url = "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16390";
+
+    var ID = document.deleteForm.idproizvod.value;
+    if(ID == ""){
+        alert('Morate unijeti ID!');
+        return;
+    }
+    var product = {
+        id: ID
+    };
+    var requestObject = new XMLHttpRequest();
+    requestObject.onreadystatechange = function(event) {
+        if (requestObject.readyState == 4 && requestObject.status == 200)
+        {
+            alert('Uspjesno uklonjen proizvod!');
+            loadProducts();
+            event.preventDefault();
+        }
+    }
+    requestObject.open("POST", url, false);
+    requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    requestObject.send("akcija=brisanje" + "&proizvod=" + JSON.stringify(product));
 }
 
-function updateProduct(productID){
+function updateProduct(){
+    var isValid = true;
+    var url = "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16390";
 
+    var amount = document.editForm.editkolicina.value;
+    var naziv = document.editForm.editnaziv.value;
+    var slikaurl = document.editForm.editurl.value;
+    var productID = document.editForm.editid.value;
+    if(productID == ""){
+        alert('Morate unijeti ID!');
+        return;
+    }
+
+    var validity = validateFields(naziv, slikaurl, amount);
+    if(!validity) return false;
+    var product = {
+        id: productID,
+        naziv: naziv,
+        kolicina: amount,
+        slika: slikaurl
+    };
+    var requestObject = new XMLHttpRequest();
+    requestObject.onreadystatechange = function(event) {
+        if (requestObject.readyState == 4 && requestObject.status == 200)
+        {
+            alert('Uspjesna promjena podataka za id ' + productID);
+            loadProducts();
+            event.preventDefault();
+        }
+    }
+    requestObject.open("POST", url, false);
+    requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    requestObject.send("akcija=promjena" + "&brindexa=16390&proizvod=" + JSON.stringify(product));
 }
 
 function loadProducts(){
