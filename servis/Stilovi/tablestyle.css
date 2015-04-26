@@ -172,7 +172,7 @@ html{
     position:relative;
     background-color: #fb413d;
     margin-top:50px;
-    height: 1000px;
+    overflow: auto;
 }
 
 #table_div{
@@ -205,6 +205,14 @@ html{
     position: relative;
 }
 
+.darkContainer{
+    width:100%;
+    min-height: 100%;
+    margin-bottom: -50px;
+    position: relative;
+    background: rgba(200, 54, 54, 0.5);
+}
+
 .detaljnijeLink{
     font-family: 'Oxygen', normal;
     float: right;
@@ -231,8 +239,8 @@ html{
     font-family: 'Oxygen', sans-serif;
     font-size: 10pt;
     color: #ffffff;
-    width: 70%;
-    border-spacing: 1px;
+    width: 45%;
+    border-spacing: 0px;
 }
 
 .tableHeaders{
@@ -262,5 +270,20 @@ html{
 }
 
 .centeredButtons{
+    margin-top: 10px;
     text-align: center;
+}
+
+.blackout {
+    background-color:#000;
+    opacity:.7;
+    filter:alpha(opacity=70);
+    height:100%;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:100;
+    display:none;
+    cursor:pointer;
 }
