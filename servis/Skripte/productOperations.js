@@ -83,7 +83,7 @@ function addProduct(){
             event.preventDefault();
         }
     }
-    requestObject.open("POST", url, false);
+    requestObject.open("POST", url, true);
     requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     requestObject.send("akcija=dodavanje" + "&brindexa=16390&proizvod=" + JSON.stringify(product));
 }
@@ -109,7 +109,7 @@ function deleteProduct(){
             event.preventDefault();
         }
     }
-    requestObject.open("POST", url, false);
+    requestObject.open("POST", url, true);
     requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     requestObject.send("akcija=brisanje" + "&proizvod=" + JSON.stringify(product));
 }
@@ -139,12 +139,12 @@ function updateProduct(){
     requestObject.onreadystatechange = function(event) {
         if (requestObject.readyState == 4 && requestObject.status == 200)
         {
-            alert('Uspjesna promjena podataka za id ' + productID);
+
             loadProducts();
             event.preventDefault();
         }
     }
-    requestObject.open("POST", url, false);
+    requestObject.open("POST", url, true);
     requestObject.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     requestObject.send("akcija=promjena" + "&brindexa=16390&proizvod=" + JSON.stringify(product));
 }
