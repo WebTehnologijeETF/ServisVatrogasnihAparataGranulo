@@ -78,7 +78,6 @@ function addProduct(){
     requestObject.onreadystatechange = function(event) {
         if (requestObject.readyState == 4 && requestObject.status == 200)
         {
-            alert('Uspjesan unos!');
             loadProducts();
             event.preventDefault();
         }
@@ -104,7 +103,6 @@ function deleteProduct(){
     requestObject.onreadystatechange = function(event) {
         if (requestObject.readyState == 4 && requestObject.status == 200)
         {
-            alert('Uspjesno uklonjen proizvod!');
             loadProducts();
             event.preventDefault();
         }
