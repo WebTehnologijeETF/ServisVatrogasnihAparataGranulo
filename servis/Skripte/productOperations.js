@@ -195,6 +195,9 @@ function loadProducts(){
                     imageCell.className = imageCell.className + " tabledata";
                     imageCell.innerHTML = "<img src='" +  productData[i].slika + "' alt='Slika nije ucitana' />";
                 }
+                var tableDiv = document.getElementById('table_div');
+                var newTableHeight = (table.offsetHeight + 200) + 'px';
+                tableDiv.style.height = newTableHeight;
 
         }
     }
