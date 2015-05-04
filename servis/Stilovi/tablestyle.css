@@ -230,7 +230,7 @@ html{
 }
 
 .clearfooter {
-    height: 50px;
+    height: 0px;
     clear: both;
 }
 

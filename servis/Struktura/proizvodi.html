@@ -60,7 +60,7 @@
                 <h2>Brisanje proizvoda</h2>
                 <hr>
                 <input id="Id" name="idproizvod" placeholder="ID proizvoda" type="text" required>
-                <input type="submit" value="Pošalji" class="popupButtons" onclick="deleteProduct()">
+                <input type="submit" value="Pošalji" class="popupButtons" onclick="deleteProduct(); return false;">
             </form>
         </div>
     </div>
@@ -73,13 +73,12 @@
                 <input id="name" name="naziv" placeholder="Naziv proizvoda" type="text" required>
                 <input id="kolicina" name="kolicina" placeholder="Količina proizvoda" type="text" required>
                 <input id="url" name="url" placeholder="URL slike" type="text" required>
-                <input type="submit" value="Pošalji" class="popupButtons" onclick="addProduct()">
+                <input type="submit" value="Pošalji" class="popupButtons" onclick="addProduct(); return false;">
             </form>
         </div>
-        <!-- Popup Div Ends Here -->
     </div>
     <div id="editProductPopup">
-        <div id="editPopupContact">
+    <div id="editPopupContact">
             <form id="editForm" method="post" name="editForm">
                 <img id="editClose" src="/servis/Resursi/Slike/close.png" onclick ="hide('editProductPopup');">
                 <h2>Izmjena proizvoda</h2>
@@ -88,7 +87,7 @@
                 <input id="editName" name="editnaziv" placeholder="Naziv proizvoda" type="text" required>
                 <input id="editKolicina" name="editkolicina" placeholder="Količina proizvoda" type="text" required>
                 <input id="editUrl" name="editurl" placeholder="URL slike" type="text" required>
-                <input type="submit" value="Pošalji" class="popupButtons" onclick="updateProduct()">
+                <input type="submit" value="Pošalji" class="popupButtons" onclick="updateProduct(); return false;">
             </form>
         </div>
     </div>
