@@ -36,7 +36,7 @@
     </div>
     <div id="contact_container" class="container">
         <div id="contact_div">
-            <form name="inputForm"  method="post" class="formElements">
+            <form id="contact_form" name="inputForm"  method="post" class="formElements">
                 Vaše ime<br>
                 <input type="text" name="Name" id="cf_name"><br>
                 Vaša e - mail adresa<br>
@@ -59,7 +59,7 @@
                 Poruka<br>
                 <textarea name="Poruka" id="cf_message" >
                 </textarea><br>
-                <input type="submit" value="Pošalji" onclick="validateInput()">
+                <input type="submit" value="Pošalji" onclick="validateInput(); return false;">
             </form>
         </div>
     </div>

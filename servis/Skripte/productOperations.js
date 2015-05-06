@@ -80,6 +80,7 @@ function addProduct(){
         {
             loadProducts();
             event.preventDefault();
+            hide('addProductPopup');
         }
     }
     requestObject.open("POST", url, true);
@@ -105,6 +106,7 @@ function deleteProduct(){
         {
             loadProducts();
             event.preventDefault();
+            hide('deleteProductPopup');
         }
     }
     requestObject.open("POST", url, true);
@@ -140,6 +142,7 @@ function updateProduct(){
 
             loadProducts();
             event.preventDefault();
+            hide('updateProductPopup');
         }
     }
     requestObject.open("POST", url, true);

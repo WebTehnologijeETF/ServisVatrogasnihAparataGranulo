@@ -140,20 +140,18 @@ function AjaxValidateMjestoOpcina(state){
 }
 
 function validateWithoutAjax(isValidAjax){
-    var $form =  $('#inputForm');
-    $form.find('input[type="submit"]').on('click', function(event) {
-        event.preventDefault();
-        var isValidNoPhone = validateTip() && validateName() && validateEmail()
-            && validatePoruka() && isValidAjax;
-        var isValidPhone = validateTip() && validateName() && validateEmail()
-            && validatePoruka() && validateBrojTel() && isValidAjax;
-        if (document.inputForm.Brojtel.value != "") {
-            if (isValidPhone) $form.submit();
-        }
-        else {
-            if (isValidNoPhone) $form.submit();
-        }
-    });
+    var form = document.getElementById('contact_form');
+    var isValidNoPhone = validateTip() && validateName() && validateEmail()
+        && validatePoruka() && isValidAjax;
+    var isValidPhone = validateTip() && validateName() && validateEmail()
+        && validatePoruka() && validateBrojTel() && isValidAjax;
+
+    if (document.inputForm.Brojtel.value != "") {
+        if (isValidPhone) form.submit();
+    }
+    else {
+        if (isValidNoPhone) form.submit();
+    }
 }
 
 function validateInput(){
