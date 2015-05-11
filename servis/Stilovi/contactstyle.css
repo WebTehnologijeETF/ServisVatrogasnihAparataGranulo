@@ -11,7 +11,13 @@ html{
     height: 100%;
 }
 
-
+label{
+	margin-bottom: 0;
+	margin-left: 18%;
+	font-family: 'Oxygen', sans-serif;
+    font-size: 12pt;
+    color: white;
+}
 
 /* Image styling */
 
@@ -179,8 +185,6 @@ html{
     background-color: #fb413d;
     margin-top:50px;
     height: 1000px;
-    text-align: center;
-
 }
 
 #contact_div{
@@ -205,6 +209,13 @@ html{
     position: relative;
 }
 
+.justADiv{
+	width: 100%;
+	margin-bottom: -50px;
+	min-height: 100%;
+    position: relative;
+}
+
 .clearfooter {
     height: 50px;
     clear: both;
@@ -214,4 +225,28 @@ html{
     font-family: 'Oxygen', sans-serif;
     font-size: 12pt;
     color: white;
+	padding-left: 40%;
+}
+
+.individualFormElement{
+	margin-left: 15%;
+}
+
+.spanErrorClass{
+    visibility: visible;
+    background-color: red;
+    text-align: center;
+    font-family: 'Oxygen', sans-serif;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.h2Style{
+	font-family: 'Oxygen', sans-serif;
+    font-size: 16pt;
+    color: white;
+}
+
+.spanCorrectClass{
+    visibility: hidden;
 }

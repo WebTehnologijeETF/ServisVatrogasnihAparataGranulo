@@ -183,14 +183,22 @@ function validateInput(){
             }
         }
         if(requestObject.readyState == 4) return;
-        requestObject.open('GET','http://zamger.etf.unsa.ba/wt/mjesto_opcina.php?opcina=' + opcina_tekst + '&mjesto=' + mjesto, false);
+        requestObject.open('GET','http://zamger.etf.unsa.ba/wt/mjesto_opcina.php?opcina=' + opcina_tekst + '&mjesto=' + mjesto, true);
         requestObject.send();
     }
     else{
-        if(document.inputForm.Brojtel.value != "") return validateTip() && validateName() && validateEmail()
+        if(document.inputForm.Brojtel.value != ""){ 
+			var valid = validateTip() && validateName() && validateEmail()
             && validatePoruka() && validateBrojTel();
-        else return validateTip() && validateName() && validateEmail()
+			 var form = document.getElementById('contact_form');
+				if(valid) form.submit();
+			}
+        else{
+			var valid = validateTip() && validateName() && validateEmail()
             && validatePoruka();
+			var form = document.getElementById('contact_form');
+				if(valid) form.submit();
+		}
     }
 }
 
