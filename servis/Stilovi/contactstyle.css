@@ -167,6 +167,7 @@ label{
 #cf_message {
     height: 200px;
     width: 400px;
+	padding-left: 3%;
 }
 
 #footer_div{
@@ -191,6 +192,35 @@ label{
     background-color: #fb413d;
     width: 100%;
     height: 100%;
+}
+
+#imeLabel{
+	padding-left: 3%;
+}
+
+#mailLabel{
+	padding-left: 0;
+	margin-left: 17%;
+}
+
+#opstinaLabel{
+	padding-left: 1%;
+}
+
+#gradLabel{
+	padding-left: 3%;
+}
+
+#porukaLabel{
+	padding-left: 3%;
+}
+
+#submitButton{
+	margin-left: 22%;
+}
+
+#cf_predmet{
+	margin-left: 20%;
 }
 
 
@@ -225,7 +255,13 @@ label{
     font-family: 'Oxygen', sans-serif;
     font-size: 12pt;
     color: white;
-	padding-left: 40%;
+    padding-left: 35%;
+}
+
+.specialFormElements{
+	font-family: 'Oxygen', sans-serif;
+    font-size: 12pt;
+    color: white;
 }
 
 .individualFormElement{
@@ -239,6 +275,7 @@ label{
     font-family: 'Oxygen', sans-serif;
     color: #ffffff;
     display: inline-block;
+	margin-left: 5%;
 }
 
 .h2Style{
@@ -249,4 +286,8 @@ label{
 
 .spanCorrectClass{
     visibility: hidden;
+}
+
+.centeredElements{
+	text-align: center;
 }

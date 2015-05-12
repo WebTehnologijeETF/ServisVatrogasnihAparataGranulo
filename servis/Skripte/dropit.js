@@ -1,21 +1,21 @@
-$(document).ready(function() {
-
-    $('#drpdown').bind('mouseover', dropItDown);
-    $('#drpdown').bind('mouseout', pullItBack);
-
-    function dropItDown() {
-        $('#drpdown').find('ul').css('visibility', 'visible');
+function dropItDown() {
+		var menulist = document.getElementById('drpdownlist');
+		menulist.style.visibility = "visible";
     }
 
-    function pullItBack() {
-        $('#drpdown').find('ul').css('visibility', 'hidden');
-    }
+function pullItBack() {
+	var menulist = document.getElementById('drpdownlist');
+	menulist.style.visibility = "hidden";
+}
 
-    textArea = document.inputForm.Poruka.value;
+function addEventListenersToBody(){
+	document.getElementById('drpdown').onmouseover = function() { dropItDown();};
+	document.getElementById('drpdown').onmouseout = function () { pullItBack(); };
+	textArea = document.inputForm.Poruka.value;
     if(textArea != null) {
         textArea = textArea.replace(/(^\s*)|(\s*$)/gi, "");
         textArea = textArea.replace(/[ ]{2,}/gi, " ");
         textArea = textArea.replace(/\n /, "\n");
         document.inputForm.Poruka.value = textArea;
     }
-});
+}
