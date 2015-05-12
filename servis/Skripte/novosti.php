@@ -1,9 +1,10 @@
 <?php
-$fajl = scandir("C:/wamp/www/servis/Skripte/novosti");
+$path = dirname(__FILE__) . '\novosti';
+$fajl = scandir($path);
 $novosti = array();
 $datumi = array();
 for ($i=2; $i<count($fajl); $i++) {
-    $ucitaj = file("C:/wamp/www/servis/Skripte/novosti/".$fajl[$i]);
+    $ucitaj = file($path . '/' . $fajl[$i]);
     array_push($novosti, $fajl[$i]);
     array_push($datumi, $ucitaj[0]);
 }
@@ -26,7 +27,7 @@ for ($i=2; $i<count($fajl); $i++) {
     }
 
 for ($i=0; $i<count($novosti); $i++){
-  $sadrzaj = file("C:/wamp/www/servis/Skripte/novosti/".$novosti[$i]);
+  $sadrzaj = file($path . '/' . $novosti[$i]);
     $opis = "";
     $detaljnije = "";
     $imaDetaljnije = false;
