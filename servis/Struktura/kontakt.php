@@ -21,12 +21,12 @@
         </div>
     </div>
 	<div id="contact_container" class="container">
-        <?php include('C:/wamp/www/servis/Skripte/serverSideValidation.php'); ?>
+        <?php include('serverSideValidation.php'); ?>
         <div id="contact_div">
-		 <?php if($_SERVER['REQUEST_METHOD'] == 'POST' && validateAll($_POST['Name'], $_POST['Email'], $_POST['Poruka'], $_POST['Tip'], $_POST['Brojtel'])){ include('C:/wamp/www/servis/Skripte/showInputs.php'); } ?>
+		 <?php if($_SERVER['REQUEST_METHOD'] == 'POST' && validateAll($_POST['Name'], $_POST['Email'], $_POST['Poruka'], $_POST['Tip'], $_POST['Brojtel'])){ include('showInputs.php'); } ?>
             <form id="contact_form" name="inputForm" action="kontakt.php" method="post" class="formElements">
                 <label id="imeLabel">Vaše ime</label><br>
-                <input type="text" name="Name" class="individualFormElement" id="cf_name" <?php if(isFormSubmitted()) echo 'value="' . htmlspecialchars(.$_POST['Name']) . '"';?>><span id="nameError" <?php if(isFormSubmitted() && !validateName($_POST['Name'])) echo 'class="spanErrorClass"'; ?>><?php if(isFormSubmitted()){ if(!validateName($_POST['Name'])) printError("NemaImena"); } ?></span><br>
+                <input type="text" name="Name" class="individualFormElement" id="cf_name" <?php if(isFormSubmitted()) echo 'value="' . htmlspecialchars($_POST['Name']) . '"';?>><span id="nameError" <?php if(isFormSubmitted() && !validateName($_POST['Name'])) echo 'class="spanErrorClass"'; ?>><?php if(isFormSubmitted()){ if(!validateName($_POST['Name'])) printError("NemaImena"); } ?></span><br>
                 <label id="mailLabel">Vaša e - mail adresa</label><br>
                 <input type="text" id="cf_email" class="individualFormElement" name="Email" <?php if(isFormSubmitted()) echo 'value="' . htmlspecialchars($_POST['Email']) . '"';?>><span id="emailError" <?php if(isFormSubmitted() && !validateEmail($_POST['Email'])) echo 'class="spanErrorClass"'; ?>><?php if(isFormSubmitted()){ if(!validateEmail($_POST['Email'])) printError("Email"); } ?></span><br>
                 <label id="opstinaLabel">Vaša opština</label><br>

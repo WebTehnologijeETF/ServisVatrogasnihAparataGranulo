@@ -20,6 +20,13 @@
          </div>
         <div id="news_container" class="container">
          <div id="news_div" class="newsDivNormalState">
+		 	<?php if(isset($_GET['poslan'])){ 
+				$porukada = 'Hvala što ste nas kontaktirali!';
+				$porukane = 'Servis trenutno nije dostupan.';
+				if($_GET['poslan'] == 'da')
+				echo '<h1 class="news_header">' . $porukada  . '</h1>';
+				else echo '<h1 class="news_header">' . $porukane  . '</h1>';	
+			}?>
 			<?php include('novosti.php');?>
          </div>
         </div>
