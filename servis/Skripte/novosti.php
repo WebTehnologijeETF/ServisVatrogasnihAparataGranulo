@@ -45,7 +45,7 @@ for ($i=0; $i<count($novosti); $i++){
     } 
 	$news_item["datetime"] = $sadrzaj[0];
 	$news_item["autor"] = $sadrzaj[1];
-	$news_item["naslov"] = ucfirst(strtolower($sadrzaj[2]));
+	$news_item["naslov"] = ucfirst(mb_strtolower($sadrzaj[2], 'UTF-8'));
 	$news_item["slika"] = $sadrzaj[3];
 	$news_item["opis"] = $opis;
 	$news_item["detaljnije"] = $detaljnije;

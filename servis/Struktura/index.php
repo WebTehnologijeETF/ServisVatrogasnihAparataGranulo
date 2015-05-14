@@ -3,7 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/stylerevised.css">
-    <script type="text/javascript" src="/servis/Skripte/jquery.js"></script>
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +26,7 @@
         <div class="clearfooter"></div>
     </div>
     <div id="footer_div">
-            <img id="footer_image" src="/servis/Resursi/slike/footer_bg.png" alt="Slika nije ucitana">
+            <img id="footer_image" src="/servis/Resursi/Slike/footer_bg.png" alt="Slika nije ucitana">
             <p id="footer_text" class="djelatnost"></p>
     </div>
 </body>

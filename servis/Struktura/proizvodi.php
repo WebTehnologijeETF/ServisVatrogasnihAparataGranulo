@@ -4,7 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/tablestyle.css">
     <link rel="stylesheet" href="/servis/Stilovi/popupForm.css">
-    <script type="text/javascript" src="/servis/Skripte/jquery.js"></script>
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
     <script type="text/javascript" src="/servis/Skripte/productOperations.js"></script>

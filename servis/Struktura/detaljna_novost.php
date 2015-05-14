@@ -16,21 +16,7 @@
          </div>
         <div id="navbar_container" class="container">
          <div id="navbar_div" class="nav">
-             <ul id="lista_meni">
-                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/index.php')">NOVOSTI</a></li>
-                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/tabelarniprikaz.html')">CJENOVNIK</a></li>
-                 <li id="drpdown" ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/ostalo.html')">NAŠI PARTNERI</a>
-                     <ul id="drpdownlist">
-                        <li><a class="djelatnost" href="http://www.abcfireinc.net/">ABC Fire Inc.</a></li>
-                        <li><a class="djelatnost" href="http://www.abcofire.com/">ABCO Fire</a></li>
-                        <li><a class="djelatnost" href="http://www.silcofireprotection.com/">Silco Fire Protection</a></li>
-                     </ul>
-                 </li>
-                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/ostalo.html')">NAŠE USLUGE</a></li>
-                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/ostalo.html')">REFERENCE</a></li>
-                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/kontakt.php')">KONTAKT</a></li>
-                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/proizvodi.html')">PROIZVODI</a></li>
-             </ul>
+             <?php include('printnavbar.php'); ?>
          </div>
          </div>
         <div id="news_container" class="container">
