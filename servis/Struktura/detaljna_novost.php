@@ -20,7 +20,7 @@
          </div>
          </div>
         <div id="news_container" class="container">
-         <div id="news_div">
+         <div id="news_div" class="newsDivOneNewsItem">
 			<?php 
 				$receivedData = $_POST["news_item"];
 				$news_item = json_decode($receivedData, true); // pretvara u asocijativni niz

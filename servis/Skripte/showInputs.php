@@ -3,11 +3,11 @@
 // Prikazivanje unijetih podataka na formi i dugmeta za potvrdu istog
 
 // varijable
-$name = $_POST['Name'];
-$mail = $_POST['Email'];
-$poruka = $_POST['Poruka'];
-$tip = $_POST['Tip'];
-$brojtel = $_POST['Brojtel'];
+$name = htmlspecialchars($_POST['Name']);
+$mail = htmlspecialchars($_POST['Email']);
+$poruka = htmlspecialchars($_POST['Poruka']);
+$tip = htmlspecialchars($_POST['Tip']);
+$brojtel = htmlspecialchars($_POST['Brojtel']);
 
 echo 	'<div class="centeredElements">';
 echo		 '<p class="h2Style">Provjerite da li ste ispravno unijeli podatke:</p>';

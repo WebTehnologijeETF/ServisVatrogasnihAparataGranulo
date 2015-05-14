@@ -172,15 +172,6 @@ html{
 	overflow:hidden;
 }
 
-#news_div{
-    background-color: #fb413d;
-    width: 100%;
-	min-height: 100%;
-	height:100%;
-	overflow: hidden;
-}
-
-
 /* Klase */
 
 .djelatnost{
@@ -256,4 +247,19 @@ html{
 
 .newsContainer{
     overflow: auto;
+}
+
+.newsDivNormalState{
+    background-color: #fb413d;
+    width: 100%;
+	min-height: 100%;
+	height:100%;
+	overflow: hidden;
+}
+
+.newsDivOneNewsItem{
+    background-color: #fb413d;
+    width: 100%;
+	height:500px;
+	overflow: hidden;
 }

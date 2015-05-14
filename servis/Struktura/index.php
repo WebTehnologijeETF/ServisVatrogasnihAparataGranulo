@@ -19,8 +19,8 @@
          </div>
          </div>
         <div id="news_container" class="container">
-         <div id="news_div">
-			<?php include('C:/wamp/www/servis/Skripte/novosti.php');?>
+         <div id="news_div" class="newsDivNormalState">
+			<?php include('novosti.php');?>
          </div>
         </div>
         <div class="clearfooter"></div>
