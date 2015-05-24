@@ -25,10 +25,10 @@
 				$receivedData = $_POST["news_item"];
 				$news_item = json_decode($receivedData, true); // pretvara u asocijativni niz
 				echo '<article class="newsContainer">';
-				echo '<img src="' . $news_item["slika"] . '" class="news_image" alt=" ">';
-				echo '<h1 class="news_header">' . $news_item["naslov"] . '</h1>';
-				echo '<p class="authorsAndDate">Autor: ' . $news_item["autor"] . ' ' . 'Datum i vrijeme objave: ' . $news_item["datetime"] . '</p>';
-				echo '<p class="news_item">' . $news_item["opis"] . $news_item["detaljnije"] . '</p>';
+				echo '<img src="' . $news_item["Slika"] . '" class="news_image" alt=" ">';
+				echo '<h1 class="news_header">' . $news_item["Naslov"] . '</h1>';
+				echo '<p class="authorsAndDate">Autor: ' . $news_item["Autor"] . ' ' . 'Datum i vrijeme objave: ' . $news_item["Datum"] . '</p>';
+				echo '<p class="news_item">' . $news_item["Opis"] . " " . $news_item["Detaljnije"] . '</p>';
 				echo '</article>';
 			?>
          </div>

@@ -1,61 +1,42 @@
 <?php
-$path = dirname(__FILE__) . '\novosti';
-$fajl = scandir($path);
-$novosti = array();
-$datumi = array();
-for ($i=2; $i<count($fajl); $i++) {
-    $ucitaj = file($path . '/' . $fajl[$i]);
-    array_push($novosti, $fajl[$i]);
-    array_push($datumi, $ucitaj[0]);
-}
-//Sortiranje
-    for ($i=0; $i<count($novosti) - 1; $i++) {
-	try{
-        if (DateTime::createFromFormat('DD.MM.YY hh:mm:ss', $datumi[$i]) < DateTime::createFromFormat('DD.MM.YY hh:mm:ss', $datumi[$i + 1])) {
-            $v = $datumi[$i+1];
-            $datumi[$i+1] = $datumi[$i];
-            $datumi[$i] = $v;
-            $v = $novosti[$i+1];
-            $novosti[$i+1] = $novosti[$i];
-            $novosti[$i] = $v;
-            
-        }
-	}
-	catch(Exception $e){
-		echo $e->getMessage();
-	}
-    }
 
-for ($i=0; $i<count($novosti); $i++){
-  $sadrzaj = file($path . '/' . $novosti[$i]);
-    $opis = "";
-    $detaljnije = "";
-    $imaDetaljnije = false;
-    for ($j=4; $j<count($sadrzaj);$j++) {
-        if($sadrzaj[$j] == "--\r\n") {
-            $imaDetaljnije = true;
-            continue;
-        }
-        if ($imaDetaljnije == false) {
-            $opis .= " ".$sadrzaj[$j];
-        }
-        else {
-            $detaljnije .= " ".$sadrzaj[$j];
-        }
-    } 
-	$news_item["datetime"] = $sadrzaj[0];
-	$news_item["autor"] = $sadrzaj[1];
-	$news_item["naslov"] = ucfirst(mb_strtolower($sadrzaj[2], 'UTF-8'));
-	$news_item["slika"] = $sadrzaj[3];
-	$news_item["opis"] = $opis;
-	$news_item["detaljnije"] = $detaljnije;
+function connect_to_db()
+{
+	static $connection;
 	
-	echo '<article class="newsContainer">';
-	echo '<img src="' . $sadrzaj[3] . '" class="news_image" alt=" ">';
-	echo '<h1 class="news_header">' . ucfirst(strtolower($sadrzaj[2])) . '</h1>';
-	echo '<p class="news_item">' . $opis . '</p>';
-	if($imaDetaljnije) echo "<a onclick='loadSingleNewsItem(" . json_encode($news_item) . ")' class='detaljnijeLink'>Detaljnije...</a>";
-	echo '</article>';
+	if(!isset($connection))
+	{
+		// MySQL connection data
+		$credentials = parse_ini_file('mysql_credentials.ini'); ;
+		$connection = new mysqli($credentials['host'], $credentials['username'], $credentials['password'], $credentials['dbname']);
+	}
+	if($connection == false)
+	{
+		echo '<script>alert("Greška pri konekciji na bazu");</script>';
+	}
+	else return $connection;
 }
 
-	?>
+$connection = connect_to_db();
+$query = 'SELECT datum "Datum", UNIX_TIMESTAMP(vrijeme_vijesti) "Vrijeme", autor "Autor", slika_url "Slika", opis_vijesti "Opis", detaljna_vijest "Detaljnije", naslov "Naslov"
+		  FROM novosti ORDER BY datum DESC';
+$statement = $connection->prepare($query);
+
+if($statement)
+{
+	if($statement->execute())
+	{
+		$result = $statement->get_result();
+		while($news_item = $result->fetch_array(MYSQLI_ASSOC))
+		{
+			echo '<article class="newsContainer">';
+			echo '<img src="' . $news_item["Slika"] . '" class="news_image" alt=" ">';
+			echo '<h1 class="news_header">' . ucfirst(strtolower($news_item["Naslov"])) . '</h1>';
+			echo '<p class="news_item">' . $news_item["Opis"] . '</p>';
+			if($news_item["Detaljnije"] != "") echo "<a onclick='loadSingleNewsItem(" . json_encode($news_item) . ")' class='detaljnijeLink'>Detaljnije...</a>";
+			echo '</article>';
+		}
+	}
+	$statement->close();
+}
+?>
