@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/stylerevised.css">
+	<link rel="stylesheet" href="/servis/Stilovi/contactstyle.css">
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
 	<script type="text/javascript" src="/servis/Skripte/popupOperations.js"></script>
@@ -20,15 +21,18 @@
          </div>
          </div>
         <div id="news_container" class="container">
-         <div id="news_div" class="newsDivNormalState">
-		 	<?php if(isset($_GET['poslan'])){ 
-				$porukada = 'Hvala što ste nas kontaktirali!';
-				$porukane = 'Servis trenutno nije dostupan.';
-				if($_GET['poslan'] == 'da')
-				echo '<h1 class="news_header">' . $porukada  . '</h1>';
-				else echo '<h1 class="news_header">' . $porukane  . '</h1>';	
-			}?>
-			<?php include('novosti.php');?>
+         <div id="news_div" class="newsDivOneNewsItemComments">
+		 	<form id="komentar_forma" name="komentar_forma" action="index.php" class="formElementsComment" method="post" >
+				<label id="ime_label">Vaše ime</label><br>
+				<input type="text" class="individualFormElement" id="ime_input" name="Autor" value="" required/><br>
+				<label id="email_label">Vaš email</label><br>
+				<input type="text" class="individualFormElement" id="email_input" name="Email" value=""/><br>
+				<label id="email_label">Vaš komentar</label><br>
+				<textarea name="Komentar" class="individualFormElement" id="komentar_input"> 
+                </textarea><br>
+				<input type="hidden" id="idvijesti" name="idVijesti" value="<?php if(isset($_GET["idVijesti"])) echo $_GET["idVijesti"]; ?>"/><br>
+				<input type="submit" class="individualFormElement" id="commentSubmit" name="commentSubmit" value="Ostavi komentar">
+			</form>
          </div>
         </div>
         <div class="clearfooter"></div>

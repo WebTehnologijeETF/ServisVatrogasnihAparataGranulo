@@ -258,6 +258,13 @@ label{
     padding-left: 35%;
 }
 
+.formElementsComment{
+    font-family: 'Oxygen', sans-serif;
+    font-size: 12pt;
+    color: white;
+    padding-left: 35%;
+}
+
 .specialFormElements{
 	font-family: 'Oxygen', sans-serif;
     font-size: 12pt;

@@ -205,6 +205,34 @@ html{
     margin-left: 20%;
 }
 
+.comment_item{
+    font-family: 'Oxygen', sans-serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: #ffffff;
+
+    margin-bottom: 10px;
+    margin-left: 20%;
+}
+
+.comment_show
+{
+	font-family: 'Oxygen', sans-serif;
+    font-style: italic;
+    font-size: 10pt;
+    color: #ffffff;
+    margin-bottom: 10px;
+	margin-left: 5%;
+}
+
+.comment_header
+{
+	font-family: 'Oxygen', sans-serif;
+    font-size: 13pt;
+    color: #ffffff;
+    margin-left: 5%;
+}
+
 .authorsAndDate{
     font-family: 'Oxygen', sans-serif;
     font-size: 8pt;
@@ -257,7 +285,21 @@ html{
 	overflow: hidden;
 }
 
+.newsDivNormalStateCommenting{
+    background-color: #fb413d;
+    width: 100%;
+	height: 1500px;
+	overflow: hidden;
+}
+
 .newsDivOneNewsItem{
+    background-color: #fb413d;
+    width: 100%;
+	height:500px;
+	overflow: hidden;
+}
+
+.newsDivOneNewsItemComments{
     background-color: #fb413d;
     width: 100%;
 	height:500px;

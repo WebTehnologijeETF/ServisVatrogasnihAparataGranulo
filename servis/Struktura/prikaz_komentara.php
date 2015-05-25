@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/stylerevised.css">
-    <script type="text/javascript" src="/servis/Skripte/jquery.js"></script>
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
+	<script type="text/javascript" src="/servis/Skripte/popupOperations.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
@@ -20,23 +20,19 @@
          </div>
          </div>
         <div id="news_container" class="container">
-         <div id="news_div" class="newsDivOneNewsItem">
+         <div id="news_div" class="newsDivNormalStateCommenting">
+		 
 			<?php 
-				$receivedData = $_POST["news_item"];
-				$news_item = json_decode($receivedData, true); // pretvara u asocijativni niz
-				echo '<article class="newsContainer">';
-				echo '<img src="' . $news_item["Slika"] . '" class="news_image" alt=" ">';
-				echo '<h1 class="news_header">' . $news_item["Naslov"] . '</h1>';
-				echo '<p class="authorsAndDate">Autor: ' . $news_item["Autor"] . ' ' . 'Datum i vrijeme objave: ' . $news_item["Datum"] . '</p>';
-				echo '<p class="news_item">' . $news_item["Opis"] . " " . $news_item["Detaljnije"] . '</p>';
-				echo '</article>';
+				if(isset($_GET["komentariVijest"]))
+				include('print_komentari.php');
+				else header("index.php");
 			?>
          </div>
         </div>
         <div class="clearfooter"></div>
     </div>
     <div id="footer_div">
-            <img id="footer_image" src="/servis/Resursi/slike/footer_bg.png" alt="Slika nije ucitana">
+            <img id="footer_image" src="/servis/Resursi/Slike/footer_bg.png" alt="Slika nije ucitana">
             <p id="footer_text" class="djelatnost"></p>
     </div>
 </body>
