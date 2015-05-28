@@ -41,32 +41,7 @@
 			}
 		 
 			$connection = connect_to_db();
-			if(isset($_POST["Username"]) && isset($_POST["Password"]))
-			{	
-				$loginQuery = 'SELECT count(*) "Broj" FROM administratori WHERE username=? AND password=md5(?)';
-				if($loginStatement = $connection->prepare($loginQuery))
-				{	
-					$loginStatement->bind_param('ss', $username, $pw);
-					$username = htmlspecialchars($_POST["Username"]);
-					$pw = htmlspecialchars($_POST["Password"]);
-					if($loginStatement->execute())
-					{	
-						$loginResult = $loginStatement->get_result();
-						while($instance = $loginResult->fetch_array(MYSQLI_ASSOC))
-						{
-							$loginCount = $instance["Broj"];
-							if($loginCount == 1)
-							{	
-								session_start();
-								$_SESSION["Username"] = $username;
-								header('Location: admin_panel.php?uspjeh=da');
-								die();
-							}
-						}
-					}
-				}
-			}
-		 	else if(!isset($_SESSION["Username"])){ 
+			if(!isset($_SESSION["Username"])){ 
 				print('<br><br><form class="formElements" method="post" action="login.php">
 						<label id="ime_label">  Username: </label>
 						<input type="text" id="username_input" name="Username" value="" required/><br><br>
@@ -78,10 +53,10 @@
 			else{
 				if(isset($_SESSION["Username"]) && $_SESSION["Username"] != "")
 				{
-					
+					session_unset();
 				}
 				else{
-					echo "Nije setovan";
+					
 					print('<br><br><form class="formElements" method="post" action="login.php">
 						<label id="ime_label">  Username: </label>
 						<input type="text" id="username_input" name="Username" value="" required/><br><br>
