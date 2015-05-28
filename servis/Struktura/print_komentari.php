@@ -1,21 +1,6 @@
 <?php
 
-function connect_to_db()
-{
-	static $connection;
-	
-	if(!isset($connection))
-	{
-		// MySQL connection data
-		$credentials = parse_ini_file('mysql_credentials.ini'); ;
-		$connection = new mysqli($credentials['host'], $credentials['username'], $credentials['password'], $credentials['dbname']);
-	}
-	if($connection == false)
-	{
-		echo '<script>alert("Greška pri konekciji na bazu");</script>';
-	}
-	else return $connection;
-}
+include('funkcije_baza.php');
 
 $connection = connect_to_db();
 // select komentara ako ih ima

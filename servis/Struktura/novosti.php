@@ -1,21 +1,6 @@
 <?php
 
-function connect_to_db()
-{
-	static $connection;
-	
-	if(!isset($connection))
-	{
-		// MySQL connection data
-		$credentials = parse_ini_file('mysql_credentials.ini'); ;
-		$connection = new mysqli($credentials['host'], $credentials['username'], $credentials['password'], $credentials['dbname']);
-	}
-	if($connection == false)
-	{
-		echo '<script>alert("Greška pri konekciji na bazu");</script>';
-	}
-	else return $connection;
-}
+include('funkcije_baza.php');
 
 $connection = connect_to_db();
 // insertovanje komentara ako ih ima
@@ -55,10 +40,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 $query = 'SELECT id "Vijest", datum "Datum", UNIX_TIMESTAMP(vrijeme_vijesti) "Vrijeme", autor "Autor", slika_url "Slika", opis_vijesti "Opis", detaljna_vijest "Detaljnije", naslov "Naslov"
 		  FROM novosti ORDER BY datum DESC';
 $statement = $connection->prepare($query);
-
 $commentQuery = 'SELECT count(*) "Broj" FROM komentari WHERE novost=?';
 $commentStatement = $connection->prepare($commentQuery);
-
 if($statement)
 {
 	if($statement->execute())
@@ -66,12 +49,10 @@ if($statement)
 		$result = $statement->get_result();
 		while($news_item = $result->fetch_array(MYSQLI_ASSOC))
 		{
+		
 			echo '<article class="newsContainer">';
+			echo '<div class="maxDimensionsImage">';
 			echo '<img src="' . $news_item["Slika"] . '" class="news_image" alt=" ">';
-			echo '<h1 class="news_header">' . ucfirst(strtolower($news_item["Naslov"])) . '</h1>';
-			echo '<p class="news_item">' . $news_item["Opis"] . '</p>';
-			if($news_item["Detaljnije"] != "") echo "<a onclick='loadSingleNewsItem(" . json_encode($news_item) . ")' class='detaljnijeLink'>Detaljnije...</a><br><br>";
-			echo '<a class="detaljnijeLink" href="komentar.php?idVijesti=' . $news_item["Vijest"] . '">Ostavite komentar...</a>';
 			$commentStatement->bind_param('i', $news_item["Vijest"]);
 			if($commentStatement->execute())
 			{
@@ -79,10 +60,15 @@ if($statement)
 				while($commentInstance = $commentCount->fetch_array(MYSQLI_ASSOC))
 				{
 					$count = $commentInstance["Broj"];
-					if($count != 0) echo '<br><br><br><a class="comment_item" href="prikaz_komentara.php?komentariVijest=' . $news_item["Vijest"] . '">' . $count . ' komentara</a><br>';
-					else echo '<p class="news_item">Nema komentara</p>' ;
+					if($count != 0) echo '<a class="comment_item" href="prikaz_komentara.php?komentariVijest=' . $news_item["Vijest"] . '">' . $count . ' komentara</a>';
+					else echo '<p class="comment_item">Nema komentara</p>' ;
 				}
 			}
+			echo '</div>';
+			echo '<h1 class="news_header">' . ucfirst(strtolower($news_item["Naslov"])) . '</h1>';
+			echo '<p class="news_item">' . $news_item["Opis"] . '</p>';
+			if($news_item["Detaljnije"] != "") echo "<a onclick='loadSingleNewsItem(" . json_encode($news_item) . ")' class='detaljnijeLink'>Detaljnije...</a><br><br>";
+			echo '<a class="detaljnijeLink" href="komentar.php?idVijesti=' . $news_item["Vijest"] . '">Ostavite komentar...</a>';
 			echo '</article>';
 		}
 	}
