@@ -16,6 +16,30 @@ function clearTextArea(){
     document.inputForm.Poruka.value = textArea;
 }
 
+function clearAdminTextAreas()
+{
+	var opisAdd = document.DodavanjeVijesti.Opis.value;
+	opisAdd = opisAdd.replace(/(^\s*)|(\s*$)/gi,"");
+    opisAdd = opisAdd.replace(/[ ]{2,}/gi," ");
+    opisAdd = opisAdd.replace(/\n /,"\n");
+	document.DodavanjeVijesti.Opis.value = opisAdd;
+	var opisEdit = document.DodavanjeVijesti.Opis.value;
+	opisEdit = opisEdit.replace(/(^\s*)|(\s*$)/gi,"");
+    opisEdit = opisEdit.replace(/[ ]{2,}/gi," ");
+    opisEdit = opisEdit.replace(/\n /,"\n");
+	document.DodavanjeVijesti.Opis_edit.value = opisEdit;
+	var detaljnijeAdd = document.DodavanjeVijesti.Detaljnije.value;
+	detaljnijeAdd = detaljnijeAdd.replace(/(^\s*)|(\s*$)/gi,"");
+    detaljnijeAdd = detaljnijeAdd.replace(/[ ]{2,}/gi," ");
+    detaljnijeAdd = detaljnijeAdd.replace(/\n /,"\n");
+	document.IzmjenaVijesti.Detaljnije.value = detaljnijeAdd;
+	var detaljnijeEdit = document.DodavanjeVijesti.Detaljnije_edit.value;
+	detaljnijeEdit = detaljnijeEdit.replace(/(^\s*)|(\s*$)/gi,"");
+    detaljnijeEdit = detaljnijeEdit.replace(/[ ]{2,}/gi," ");
+    detaljnijeEdit = detaljnijeEdit.replace(/\n /,"\n");
+	document.IzmjenaVijesti.Detaljnije_edit.value = detaljnijeEdit;
+}
+
 function validateEmail(){
     var isValid = true;
     var mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -32,6 +56,46 @@ function validateEmail(){
     }
     else{
         document.inputForm.Email.setCustomValidity("");
+    }
+    return isValid;
+}
+
+function validateEmailAdd(){
+    var isValid = true;
+    var mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(document.DodavanjeKorisnika.Mail.value == "" || document.DodavanjeKorisnika.Mail.value == null){
+        document.DodavanjeKorisnika.Mail.setCustomValidity("Morate unijeti e - mail!" );
+        document.DodavanjeKorisnika.Mail.focus();
+        isValid = false;
+    }
+    else if(!mailRegex.test(document.DodavanjeKorisnika.Mail.value))
+    {
+        document.DodavanjeKorisnika.Mail.setCustomValidity("Unesite email u pravom formatu!" );
+        document.DodavanjeKorisnika.Mail.focus();
+        isValid = false;
+    }
+    else{
+        document.DodavanjeKorisnika.Mail.setCustomValidity("");
+    }
+    return isValid;
+}
+
+function validateEmailEdit(){
+    var isValid = true;
+    var mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(document.PromjenaKorisnika.Email_user_edit.value == "" || document.PromjenaKorisnika.Email_user_edit.value == null){
+        document.PromjenaKorisnika.Email_user_edit.setCustomValidity("Morate unijeti e - mail!" );
+        document.PromjenaKorisnika.Email_user_edit.focus();
+        isValid = false;
+    }
+    else if(!mailRegex.test(document.PromjenaKorisnika.Email_user_edit.value))
+    {
+        document.PromjenaKorisnika.Email_user_edit.setCustomValidity("Unesite email u pravom formatu!" );
+        document.PromjenaKorisnika.Email_user_edit.focus();
+        isValid = false;
+    }
+    else{
+        document.PromjenaKorisnika.Email_user_edit.setCustomValidity("");
     }
     return isValid;
 }
@@ -53,6 +117,140 @@ function validateName(){
         document.inputForm.Name.setCustomValidity("");
     }
     return isValid;
+}
+
+function validateUsernameAdd()
+{
+	var isValid = true;
+	var control = document.DodavanjeKorisnika.KorisnickoIme;
+    if( control.value == "")
+    {
+        control.setCustomValidity("Morate unijeti korisničko ime!");
+        control.focus();
+        isValid = false;
+    }
+    else if(containsOnlySpaces(control.value)){
+        document.inputForm.Name.setCustomValidity( "Korisničko ime ne može biti samo od razmaka!");
+        document.inputForm.Name.focus();
+        isValid = false;
+    }
+    else{
+        control.setCustomValidity("");
+    }
+    return isValid;
+}
+
+function validatePasswordEdit()
+{
+	var isValid = true;
+	var control = document.PromjenaKorisnika.Pw_user_edit;
+    if( control.value == "")
+    {
+        control.setCustomValidity("Morate unijeti lozinku!");
+        control.focus();
+        isValid = false;
+    }
+	return isValid;
+}
+
+function validateURL(url){
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
+function validateNovostAdd()
+{
+	var isValid = true;
+	var naslov = document.DodavanjeVijesti.Naslov.value;
+	var autor = document.DodavanjeVijesti.Autor.value;
+	var slika = document.DodavanjeVijesti.Slika.value;
+	var opis = document.DodavanjeVijesti.Opis.value;
+	var detaljno = document.DodavanjeVijesti.Detaljnije.value;
+	if(naslov == "") {document.DodavanjeVijesti.Naslov.focus(); isValid = false;}
+	else if(autor == "") {document.DodavanjeVijesti.Autor.focus(); isValid = false; }
+	else if(validateURL(slika)) { document.DodavanjeVijesti.Slika.focus(); isValid = false;}
+	else if(opis == "") { document.DodavanjeVijesti.Opis.focus(); isValid = false;}
+	else if(detaljno == "") { document.DodavanjeVijesti.Detaljnije.focus(); isValid = false;}
+	return isValid;
+}
+
+function validateNovostEdit()
+{
+	var isValid = true;
+	var naslov = document.IzmjenaVijesti.Naslov_edit.value;
+	var autor = document.IzmjenaVijesti.Autor_edit.value;
+	var slika = document.IzmjenaVijesti.Slika_edit.value;
+	var opis = document.IzmjenaVijesti.Opis_edit.value;
+	var detaljno = document.IzmjenaVijesti.Detaljnije_edit.value;
+	if(naslov == "") {document.IzmjenaVijesti.Naslov_edit.focus(); isValid = false;}
+	else if(autor == "") {document.IzmjenaVijesti.Autor_edit.focus(); isValid = false; }
+	else if(validateURL(slika)) { document.IzmjenaVijesti.Slika_edit.focus(); isValid = false;}
+	else if(opis == "") { document.IzmjenaVijesti.Opis_edit.focus(); isValid = false;}
+	else if(detaljno == "") { document.IzmjenaVijesti.Detaljnije_edit.focus(); isValid = false;}
+	return isValid;
+}
+
+function validatePasswordAdd()
+{
+	var isValid = true;
+	var control = document.DodavanjeKorisnika.Lozinka;
+    if( control.value == "")
+    {
+        control.setCustomValidity("Morate unijeti lozinku!");
+        control.focus();
+        isValid = false;
+    }
+	return isValid;
+}
+
+function validateUsernameEdit()
+{
+	var isValid = true;
+	var control = document.PromjenaKorisnika.Username_edit;
+    if( control.value == "")
+    {
+        control.setCustomValidity("Morate unijeti korisničko ime!");
+        control.focus();
+        isValid = false;
+    }
+    else if(containsOnlySpaces(control.value)){
+        document.inputForm.Name.setCustomValidity( "Korisničko ime ne može biti samo od razmaka!");
+        document.inputForm.Name.focus();
+        isValid = false;
+    }
+    else{
+        control.setCustomValidity("");
+    }
+    return isValid;
+}
+
+function validateName(control_id, name)
+{
+	var isValid = true;
+	var control = document.getElementById(control_id);
+    if( control.value == "")
+    {
+        control.setCustomValidity("Morate unijeti ime!");
+        control.focus();
+        isValid = false;
+    }
+    else if(containsNumbers(control.value)){
+        control.setCustomValidity( "Ime ne smije sadržavati brojeve!");
+        control.focus();
+        isValid = false;
+    }
+    else{
+        control.setCustomValidity("");
+    }
+    return isValid;
+}
+
+function validateEmpty(control_id, string)
+{
+	var control = document.getElementById(control_id);
+	var isValid = true;
+	if(string == ""){ control.setCustomValidity("Morate unijeti tekst!"); isValid = false; }
+	else control.setCustomValidity("");
+	return isValid;
 }
 
 function validateBrojTel(){
@@ -154,6 +352,22 @@ function validateWithoutAjax(isValidAjax){
     }
 }
 
+function validateUsers(username, password, control_id)
+{
+	return validateUsername(control_id, username) && validateUsername(control_id, password);
+}
+
+function validatePassword(password, control_id)
+{
+	return validateUsername(control_id, password);
+}
+
+
+function validateNovost(control_id, naslov, autor, slika, detaljno)
+{
+	return (validateEmpty(control_id, naslov) && validateName(control_id, autor) && validateEmpty(control_id, detaljno));
+}
+
 function validateInput(){
     clearTextArea();
     var state = 0;
@@ -208,6 +422,15 @@ function containsNumbers(string){
         var charOfString = string.charAt(i);
         if(!isNaN(charOfString)) return true;
     }
+}
+
+function containsOnlySpaces(string){
+	var onlySpaces = true;
+    for(var i = 0; i < string.length; i++){
+        var charOfString = string.charAt(i);
+        if(charOfString != ' ') return false;
+    }
+	return onlySpaces;
 }
 
 function setToValueFromCmbBox(){

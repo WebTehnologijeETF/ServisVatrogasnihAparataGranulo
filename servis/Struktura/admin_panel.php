@@ -4,13 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/servis/Stilovi/stylerevised.css">
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
+	<script type="text/javascript" src="/servis/Skripte/validate.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
 	<script type="text/javascript" src="/servis/Skripte/adminPanelOperations.js"></script>
 	<script type="text/javascript" src="/servis/Skripte/popupOperations.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
-<body onload="addEventListenersToBody()">
+<body onload="addEventListenersToBody(); clearAdminTextAreas();">
     <div id="wrapper_div" class="container">
          <div id="header_div">
              <img id="header_logo_image" src="/servis/Resursi/Slike/header_logo.png" alt="Slika nije ucitana">
@@ -50,7 +51,7 @@
 				$id = htmlspecialchars($_POST["Delete_news"]);
 				deleteNewsCascading($id);
 			}
-			else if(isset($_POST["Izmjena"]) && $_POST["Izmjena"] == "izmjenavijesti")
+			else if(isset($_POST["Izmjena_vijesti"]) && $_POST["Izmjena_vijesti"] == "izmjenavijesti")
 			{
 				$autorEdit = htmlspecialchars($_POST["Autor_edit"]);
 				$naslovEdit = htmlspecialchars($_POST["Naslov_edit"]);
@@ -59,6 +60,31 @@
 				$idEdit = htmlspecialchars($_POST["Edit_news"]);
 				$slikaEdit = htmlspecialchars($_POST["Slika_edit"]);
 				updateNews($idEdit, $slikaEdit, $naslovEdit, $opisEdit, $detaljnijeEdit, $autorEdit);
+			}
+			else if(isset($_POST["Akcija_brisanje_komentara"]) && $_POST["Akcija_brisanje_komentara"] == "brisanjeKomentara")
+			{
+				$id = htmlspecialchars($_POST["Delete_comments"]);
+				deleteComment($id);
+			}
+			else if(isset($_POST["Akcija_dodaj_korisnika"]) && $_POST["Akcija_dodaj_korisnika"] == "dodavanjekorisnika")
+			{
+				$user = htmlspecialchars($_POST["KorisnickoIme"]);
+				$pass = htmlspecialchars($_POST["Lozinka"]);
+				$mail = htmlspecialchars($_POST["Mail"]);
+				addUser($user, $pass, $mail);
+			}
+			else if(isset($_POST["Izmjena_korisnika"]) && $_POST["Izmjena_korisnika"] == "izmjenakorisnika")
+			{
+				$user = $_POST["Username_edit"];
+				$pw = $_POST["Pw_user_edit"];
+				$mail = $_POST["Email_user_edit"];
+				$id = $_POST["Edit_users"];
+				updateUser($id, $user, $pw, $mail);
+			}
+			else if(isset($_POST["Akcija_brisanje_korisnika"]) && $_POST["Akcija_brisanje_korisnika"] == "brisanjekorisnika")
+			{
+				$id = htmlspecialchars($_POST["Delete_users"]);
+				deleteUser($id);
 			}
 		}
 		
@@ -82,7 +108,7 @@
 						<textarea name="Detaljnije" class="individualFormElement" id="detaljnije_input"> 
 						</textarea><br>
 						<input type="hidden" name="Akcija_dodaj_vijest" value="dodavanjevijesti">
-						<input type="submit" class="individualFormElement" id="addNews" name="addNews" value="Dodajte vijest">
+						<input type="submit" class="individualFormElement" onclick="return validateNovostAdd()" id="addNews" name="addNews" value="Dodajte vijest">
 					</form>
 				</div>');
 				print('<div class="divColumnClass">
@@ -109,8 +135,8 @@
 						<textarea name="Detaljnije_edit" class="individualFormElement" id="detaljnije_edit_input"> 
 						</textarea><br>
 						<input type="hidden" name="idVijesti" value="">
-						<input type="hidden" name="Izmjena" value="izmjenavijesti">
-						<input type="submit" class="individualFormElement" id="addNews" name="addNews" value="Izmijenite vijest">
+						<input type="hidden" name="Izmjena_vijesti" value="izmjenavijesti">
+						<input type="submit" class="individualFormElement" onclick="validateNovostEdit()" id="addNews" name="addNews" value="Izmijenite vijest">
 					</form>
 				</div>
 				<div class="divColumnClass">
@@ -125,25 +151,72 @@
 						echo '<option value="' . $itemToDelete["ID"] .'">' . $itemToDelete["Naslov"] . '</option>';
 					}
 					echo "</select><br><br><input type='submit' class='individualFormElement' id='deleteNews' name='deleteNews' value='Obrišite vijest'><br><br><input type='hidden' name='Akcija_brisanje_vijesti' value='brisanjeVijesti'/>";
-					print('</form>
-				</div>
+					print('</form>');
+				print('</div>
 			<h1 class="admin_header_centered"> Brisanje komentara na novosti </h1>
 				<div class="divColumnClass">
 					<form class="adminFormElements" id="delete_comment" name="BrisanjeKomentara" method="post" action="admin_panel.php">
-					</form>
+					<label id="izaberi_komentar_delete_label">Izaberite komentar</label><br>
+					');
+					$commentsToDelete = array();
+					$commentsToDelete = json_decode(getAllComments(), true);
+					echo "<select id='delete_comments_combo' name='Delete_comments'>";
+					foreach($commentsToDelete as $commentToDelete)
+					{
+						echo '<option value="' . $commentToDelete["ID"] .'">' . $commentToDelete["Naslov"] . ' komentar ' . $commentToDelete["ID"] . '</option>';
+					}
+					echo "</select><br><br><input type='submit' class='individualFormElement' id='deleteComments' name='deleteComments' value='Obrišite komentar'><br><br><input type='hidden' name='Akcija_brisanje_komentara' value='brisanjeKomentara'/>";
+					print('</form>
 				</div>
 			<h1 class="admin_header_centered"> Dodavanje, brisanje i promjena korisnika </h1>
 				<div class="divColumnClass">
 					<form class="adminFormElements" id="add_user" name="DodavanjeKorisnika" method="post" action="admin_panel.php">
+						<label id="username_label">Korisničko ime:</label><br>
+						<input type="text" class="individualFormElement" id="username_input" name="KorisnickoIme" value=""/><br>
+						<label id="password_label">Lozinka:</label><br>
+						<input type="password" class="individualFormElement" id="password_input" name="Lozinka" value="" required/><br>
+						<label id="mail_label">Email korisnika:</label><br>
+						<input type="text" class="individualFormElement" id="mail_input" name="Mail" value=""/><br>
+						<input type="hidden" name="Akcija_dodaj_korisnika" value="dodavanjekorisnika">
+						<input type="submit" class="individualFormElement" onclick="return (validateUsernameAdd() && validatePasswordAdd() && validateEmailAdd());" id="addUser" name="addUser" value="Dodajte korisnika">
 					</form>
 				</div>	
 				<div class="divColumnClass">
 					<form class="adminFormElements" id="edit_user" name="PromjenaKorisnika" method="post" action="admin_panel.php">
-					</form>
+					<label id="izaberi_korisnika_edit_label">Izaberite korisnika</label><br>
+					');
+					$users = array();
+					$users = json_decode(getAllUsers(), true);
+					echo "<select id='edit_users_combo' name='Edit_users' onchange='fillEditUsers(" . getAllUsers() . ")'>";
+					foreach($users as $user)
+					{
+						echo '<option value="' . $user["ID"] .'">' . $user["KorisnickoIme"] . '</option>';
+					}
+					echo "</select><br>";
+				print('<label id="username_label">Korisničko ime:</label><br>
+						<input type="text" class="individualFormElement" id="username_edit_input" name="Username_edit" value="" required/><br>
+						<label id="pw_edit_label">Lozinka:</label><br>
+						<input type="password" class="individualFormElement" id="pw_edit_input" name="Pw_user_edit" value=""/><br>
+						<label id="email_edit_label">Email</label><br>
+						<input type="text" class="individualFormElement" id="email_edit_input" name="Email_user_edit" value=""/><br>
+						<input type="hidden" name="idKorisnika" value="">
+						<input type="hidden" name="Izmjena_korisnika" value="izmjenakorisnika">
+						<input type="submit" class="individualFormElement" onclick="return (validateUsernameEdit() && validatePasswordEdit() && validateEmailEdit());" id="editUser" name="editUser" value="Izmijenite korisnika">
+				</form>
 				</div>
 				<div class="divColumnClass">
 					<form class="adminFormElements" id="delete_user" name="BrisanjeKorisnika" method="post" action="admin_panel.php">
-					</form>
+					<label id="izaberi_korisnika_delete">Izaberite korisnika</label><br>
+					');
+					$usersToDelete = array();
+					$usersToDelete = json_decode(getAllUsers(), true);
+					echo "<select id='delete_users_combo' name='Delete_users'>";
+					foreach($usersToDelete as $userToDelete)
+					{
+						echo '<option value="' . $userToDelete["ID"] .'">' . $userToDelete["KorisnickoIme"] . '</option>';
+					}
+					echo "</select><br><br><input type='submit' class='individualFormElement' id='deleteUsers' name='deleteUsers' value='Obrišite korisnika'><br><br><input type='hidden' name='Akcija_brisanje_korisnika' value='brisanjekorisnika'/>";
+				print('</form>
 				</div>
          </div>
         </div>');
