@@ -108,7 +108,7 @@
 						<textarea name="Detaljnije" class="individualFormElement" id="detaljnije_input"> 
 						</textarea><br>
 						<input type="hidden" name="Akcija_dodaj_vijest" value="dodavanjevijesti">
-						<input type="submit" class="individualFormElement" onclick="return validateNovostAdd()" id="addNews" name="addNews" value="Dodajte vijest">
+						<input type="submit" class="individualFormElement" onclick="validateNovostAdd()" id="addNews" name="addNews" value="Dodajte vijest">
 					</form>
 				</div>');
 				print('<div class="divColumnClass">
@@ -153,8 +153,8 @@
 					echo "</select><br><br><input type='submit' class='individualFormElement' id='deleteNews' name='deleteNews' value='Obrišite vijest'><br><br><input type='hidden' name='Akcija_brisanje_vijesti' value='brisanjeVijesti'/>";
 					print('</form>');
 				print('</div>
-			<h1 class="admin_header_centered"> Brisanje komentara na novosti </h1>
-				<div class="divColumnClass">
+			<h1 id="headerKomentari" class="admin_header_centered"> Brisanje komentara na novosti </h1>
+				<div id="brisanjeKomentaraDiv" class="divCentered">
 					<form class="adminFormElements" id="delete_comment" name="BrisanjeKomentara" method="post" action="admin_panel.php">
 					<label id="izaberi_komentar_delete_label">Izaberite komentar</label><br>
 					');
@@ -168,7 +168,7 @@
 					echo "</select><br><br><input type='submit' class='individualFormElement' id='deleteComments' name='deleteComments' value='Obrišite komentar'><br><br><input type='hidden' name='Akcija_brisanje_komentara' value='brisanjeKomentara'/>";
 					print('</form>
 				</div>
-			<h1 class="admin_header_centered"> Dodavanje, brisanje i promjena korisnika </h1>
+			<h1 id="korisnikHeader" class="admin_header_centered"> Dodavanje, brisanje i promjena korisnika </h1>
 				<div class="divColumnClass">
 					<form class="adminFormElements" id="add_user" name="DodavanjeKorisnika" method="post" action="admin_panel.php">
 						<label id="username_label">Korisničko ime:</label><br>
@@ -178,7 +178,7 @@
 						<label id="mail_label">Email korisnika:</label><br>
 						<input type="text" class="individualFormElement" id="mail_input" name="Mail" value=""/><br>
 						<input type="hidden" name="Akcija_dodaj_korisnika" value="dodavanjekorisnika">
-						<input type="submit" class="individualFormElement" onclick="return (validateUsernameAdd() && validatePasswordAdd() && validateEmailAdd());" id="addUser" name="addUser" value="Dodajte korisnika">
+						<input type="submit" class="individualFormElement" onclick="(validateUsernameAdd() && validatePasswordAdd() && validateEmailAdd());" id="addUser" name="addUser" value="Dodajte korisnika">
 					</form>
 				</div>	
 				<div class="divColumnClass">
@@ -201,7 +201,7 @@
 						<input type="text" class="individualFormElement" id="email_edit_input" name="Email_user_edit" value=""/><br>
 						<input type="hidden" name="idKorisnika" value="">
 						<input type="hidden" name="Izmjena_korisnika" value="izmjenakorisnika">
-						<input type="submit" class="individualFormElement" onclick="return (validateUsernameEdit() && validatePasswordEdit() && validateEmailEdit());" id="editUser" name="editUser" value="Izmijenite korisnika">
+						<input type="submit" class="individualFormElement" onclick="(validateUsernameEdit() && validatePasswordEdit() && validateEmailEdit());" id="editUser" name="editUser" value="Izmijenite korisnika">
 				</form>
 				</div>
 				<div class="divColumnClass">
@@ -221,7 +221,10 @@
          </div>
         </div>');
 		}
-		else echo '<h1 class="news_header">Da biste koristili funkcije admin panela morate se prijaviti!</h1>';
+		else print('<div class="newsDivNotLoggedIn">
+				   <h1 class="news_header">Da biste koristili funkcije admin panela morate se prijaviti!</h1>
+				   </div>
+				   ');
 		?>
         <div class="clearfooter"></div>
     </div>

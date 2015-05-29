@@ -81,7 +81,7 @@
 					
 				}
 				else{
-					echo "Nije setovan";
+					
 					print('<br><br><form class="formElements" method="post" action="login.php">
 						<label id="ime_label">  Username: </label>
 						<input type="text" id="username_input" name="Username" value="" required/><br><br>

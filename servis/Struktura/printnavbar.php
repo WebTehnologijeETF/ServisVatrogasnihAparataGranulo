@@ -15,5 +15,5 @@
                 <li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/proizvodi.php')">PROIZVODI</a></li>
 				<li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/admin_panel.php')">ADMINISTRACIJA</a></li>
 				<li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/login.php')">PRIJAVA</a></li>
-				<li ><a class="djelatnost" onclick="AjaxLoadJQuery('/servis/Struktura/logout.php')">ODJAVA</a></li>
+				<li ><a class="djelatnost" href="logout.php">ODJAVA</a></li>
             </ul>

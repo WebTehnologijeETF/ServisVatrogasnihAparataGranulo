@@ -65,6 +65,16 @@ html{
     position: relative;
 }
 
+#headerKomentari
+{
+	margin-top: 400px;
+}
+
+#korisnikHeader
+{
+	margin-top: 100px;
+}
+
 #header_div{
     width: 100%;
     margin: 0;
@@ -296,6 +306,14 @@ html{
 	overflow: hidden;
 }
 
+.newsDivNotLoggedIn{
+    background-color: #fb413d;
+    width: 100%;
+	min-height: 100%;
+	height:1000px;
+	overflow: hidden;
+}
+
 .newsDivNormalStateCommenting{
     background-color: #fb413d;
     width: 100%;
@@ -349,6 +367,12 @@ html{
 .divColumnClass
 {
 	float: left;
+	width: 33%;
+}
+
+.divCentered
+{
+	margin: 0 auto;
 	width: 33%;
 }
 

@@ -22,22 +22,22 @@ function clearAdminTextAreas()
 	opisAdd = opisAdd.replace(/(^\s*)|(\s*$)/gi,"");
     opisAdd = opisAdd.replace(/[ ]{2,}/gi," ");
     opisAdd = opisAdd.replace(/\n /,"\n");
-	document.DodavanjeVijesti.Opis.value = opisAdd;
+	document.DodavanjeVijesti.Opis.value = '';
 	var opisEdit = document.DodavanjeVijesti.Opis.value;
 	opisEdit = opisEdit.replace(/(^\s*)|(\s*$)/gi,"");
     opisEdit = opisEdit.replace(/[ ]{2,}/gi," ");
     opisEdit = opisEdit.replace(/\n /,"\n");
-	document.DodavanjeVijesti.Opis_edit.value = opisEdit;
+	document.DodavanjeVijesti.Opis_edit.value = '';
 	var detaljnijeAdd = document.DodavanjeVijesti.Detaljnije.value;
 	detaljnijeAdd = detaljnijeAdd.replace(/(^\s*)|(\s*$)/gi,"");
     detaljnijeAdd = detaljnijeAdd.replace(/[ ]{2,}/gi," ");
     detaljnijeAdd = detaljnijeAdd.replace(/\n /,"\n");
-	document.IzmjenaVijesti.Detaljnije.value = detaljnijeAdd;
+	document.IzmjenaVijesti.Detaljnije.value = '';
 	var detaljnijeEdit = document.DodavanjeVijesti.Detaljnije_edit.value;
 	detaljnijeEdit = detaljnijeEdit.replace(/(^\s*)|(\s*$)/gi,"");
     detaljnijeEdit = detaljnijeEdit.replace(/[ ]{2,}/gi," ");
     detaljnijeEdit = detaljnijeEdit.replace(/\n /,"\n");
-	document.IzmjenaVijesti.Detaljnije_edit.value = detaljnijeEdit;
+	document.IzmjenaVijesti.Detaljnije_edit.value = '';
 }
 
 function validateEmail(){
@@ -165,11 +165,16 @@ function validateNovostAdd()
 	var slika = document.DodavanjeVijesti.Slika.value;
 	var opis = document.DodavanjeVijesti.Opis.value;
 	var detaljno = document.DodavanjeVijesti.Detaljnije.value;
-	if(naslov == "") {document.DodavanjeVijesti.Naslov.focus(); isValid = false;}
-	else if(autor == "") {document.DodavanjeVijesti.Autor.focus(); isValid = false; }
-	else if(validateURL(slika)) { document.DodavanjeVijesti.Slika.focus(); isValid = false;}
-	else if(opis == "") { document.DodavanjeVijesti.Opis.focus(); isValid = false;}
-	else if(detaljno == "") { document.DodavanjeVijesti.Detaljnije.focus(); isValid = false;}
+	if(naslov == "") { document.DodavanjeVijesti.Naslov.setCustomValidity("Morate unijeti naslov!"); document.DodavanjeVijesti.Naslov.focus(); isValid = false;}
+	else { document.DodavanjeVijesti.Naslov.setCustomValidity("");  }
+	if(autor == "") { document.DodavanjeVijesti.Autor.setCustomValidity("Morate unijeti autora!"); document.DodavanjeVijesti.Autor.focus(); isValid = false; }
+	else { document.DodavanjeVijesti.Autor.setCustomValidity(""); }
+	if(validateURL(slika)) { document.DodavanjeVijesti.Slika.setCustomValidity("Morate unijeti validan URL!"); document.DodavanjeVijesti.Slika.focus(); isValid = false;}
+	else { document.DodavanjeVijesti.Slika.setCustomValidity(""); }
+	if(opis == "" || !containsOnlySpaces(opis)) { document.DodavanjeVijesti.Opis.setCustomValidity("Morate unijeti opis vijesti!"); document.DodavanjeVijesti.Opis.focus(); isValid = false;}
+	else{
+		document.DodavanjeVijesti.Opis.setCustomValidity("");
+	}
 	return isValid;
 }
 
@@ -181,11 +186,17 @@ function validateNovostEdit()
 	var slika = document.IzmjenaVijesti.Slika_edit.value;
 	var opis = document.IzmjenaVijesti.Opis_edit.value;
 	var detaljno = document.IzmjenaVijesti.Detaljnije_edit.value;
-	if(naslov == "") {document.IzmjenaVijesti.Naslov_edit.focus(); isValid = false;}
-	else if(autor == "") {document.IzmjenaVijesti.Autor_edit.focus(); isValid = false; }
-	else if(validateURL(slika)) { document.IzmjenaVijesti.Slika_edit.focus(); isValid = false;}
-	else if(opis == "") { document.IzmjenaVijesti.Opis_edit.focus(); isValid = false;}
-	else if(detaljno == "") { document.IzmjenaVijesti.Detaljnije_edit.focus(); isValid = false;}
+	if(naslov == "") {document.IzmjenaVijesti.Naslov_edit.setCustomValidity("Morate unijeti naslov!"); document.IzmjenaVijesti.Naslov_edit.focus(); isValid = false;}
+	else { document.IzmjenaVijesti.Naslov_edit.setCustomValidity("");  }
+	if(autor == "") { document.IzmjenaVijesti.Autor_edit.setCustomValidity("Morate unijeti autora!"); document.IzmjenaVijesti.Autor_edit.focus(); isValid = false; }
+	else { document.IzmjenaVijesti.Autor_edit.setCustomValidity(""); }
+	if(validateURL(slika)) { document.IzmjenaVijesti.Slika_edit.setCustomValidity("Morate unijeti validan URL!"); document.IzmjenaVijesti.Slika_edit.focus(); isValid = false;}
+	else { document.IzmjenaVijesti.Slika.setCustomValidity(""); }
+	if(opis == "" || containsOnlySpaces(opis)) { document.IzmjenaVijesti.Opis_edit.setCustomValidity("Morate unijeti opis!"); document.IzmjenaVijesti.Opis_edit.focus(); isValid = false;}
+	else{
+
+		document.IzmjenaVijesti.Opis_edit.setCustomValidity("");
+	}
 	return isValid;
 }
 
@@ -199,6 +210,7 @@ function validatePasswordAdd()
         control.focus();
         isValid = false;
     }
+	else control.setCustomValidity("");
 	return isValid;
 }
 
@@ -425,12 +437,7 @@ function containsNumbers(string){
 }
 
 function containsOnlySpaces(string){
-	var onlySpaces = true;
-    for(var i = 0; i < string.length; i++){
-        var charOfString = string.charAt(i);
-        if(charOfString != ' ') return false;
-    }
-	return onlySpaces;
+	return /^\w+$/.test(string);
 }
 
 function setToValueFromCmbBox(){

@@ -41,6 +41,7 @@
 			}
 		 
 			$connection = connect_to_db();
+			session_start();
 			if(!isset($_SESSION["Username"])){ 
 				print('<br><br><form class="formElements" method="post" action="login.php">
 						<label id="ime_label">  Username: </label>
@@ -51,9 +52,11 @@
 					</form>');
 			}
 			else{
+				
 				if(isset($_SESSION["Username"]) && $_SESSION["Username"] != "")
 				{
 					session_unset();
+					header("Location: login.php");
 				}
 				else{
 					
