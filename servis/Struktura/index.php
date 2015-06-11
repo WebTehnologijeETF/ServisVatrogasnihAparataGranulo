@@ -6,10 +6,11 @@
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
 	<script type="text/javascript" src="/servis/Skripte/popupOperations.js"></script>
+	<script type="text/javascript" src="/servis/Skripte/rest_functions.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
-<body onload="addEventListenersToBody()">
+<body onload="loadAllNews();">
     <div id="wrapper_div" class="container">
          <div id="header_div">
              <img id="header_logo_image" src="/servis/Resursi/Slike/header_logo.png" alt="Slika nije ucitana">
@@ -27,8 +28,7 @@
 				if($_GET['poslan'] == 'da')
 				echo '<h1 class="news_header">' . $porukada  . '</h1>';
 				else echo '<h1 class="news_header">' . $porukane  . '</h1>';	
-			}?>
-			<?php include('novosti.php');?>
+			}?>			
          </div>
         </div>
         <div class="clearfooter"></div>

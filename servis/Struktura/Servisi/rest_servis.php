@@ -1,5 +1,11 @@
 <?php
 
+	function zag () {
+		header ("{$_SERVER['SERVER_PROTOCOL']} 200 OK");
+		header ('ContentType: text/html');
+		header ('AccessControlAllowOrigin:*');
+	}
+
 	function connect_to_db()
 	{
 		static $connection;
@@ -24,6 +30,30 @@
 		$query = 'SELECT id "ID", naslov "Naslov", autor "Autor", slika_url "Slika", opis_vijesti "Opis", detaljna_vijest "Detaljnije", vrijeme_vijesti "Vrijeme"  FROM novosti';
 		if($statement = $connection->prepare($query))
 		{
+			if($statement->execute())
+			{
+				$result = $statement->get_result();
+				while($rows = $result->fetch_array(MYSQLI_ASSOC))
+				{
+					array_push($toRet, $rows);
+				}
+				
+			}
+			
+		}
+		$jsonArray = json_encode($toRet);
+		return $jsonArray;
+	}
+	
+	function getDetaljnijeForNewsItem($id)
+	{
+		$toRet = array();
+		$connection = connect_to_db();
+		$query = 'SELECT detaljna_vijest "Detaljnije" FROM novosti WHERE id=?';
+		if($statement = $connection->prepare($query))
+		{
+			$statement->bind_param('i', $idVijesti);
+			$idVijesti = $id;
 			if($statement->execute())
 			{
 				$result = $statement->get_result();
@@ -110,6 +140,54 @@
 		return $jsonArray;
 	}
 	
+	function getAllCommentsForSingleNews($id)
+	{
+		$toRet = array();
+		$connection = connect_to_db();
+		$query = 'SELECT id "ID", autor "Autor", email "Email", vrijeme_komentara "Vrijeme", datum "Datum", tekst_komentara "Komentar" FROM komentari WHERE novost=?';
+		$queryNovost = 'SELECT naslov "Naslov" FROM novosti WHERE id=?';
+		$statementNovost = $connection->prepare($queryNovost);
+		if($statement = $connection->prepare($query))
+		{
+			$statement->bind_param('i', $idVijesti);
+			$idVijesti = $id;
+			if($statement->execute())
+			{
+				$result = $statement->get_result();
+				while($rows = $result->fetch_array(MYSQLI_ASSOC))
+				{
+					array_push($toRet, $rows);
+				}
+				
+			}
+			
+		}
+		$jsonArray = json_encode($toRet);
+		return $jsonArray;
+	}
+	
+	function getCommentCount()
+	{
+		$toRet = array();
+		$connection = connect_to_db();
+		$query = 'SELECT novost "Novost", count(id) "Broj" FROM komentari GROUP BY novost';
+		if($statement = $connection->prepare($query))
+		{
+			if($statement->execute())
+			{
+				$result = $statement->get_result();
+				while($rows = $result->fetch_array(MYSQLI_ASSOC))
+				{
+					array_push($toRet, $rows);
+				}
+				
+			}
+			
+		}
+		$jsonArray = json_encode($toRet);
+		return $jsonArray;
+	}
+	
 	function deleteComment($id)
 	{
 		$connection = connect_to_db();
@@ -135,6 +213,23 @@
 			$user = $username;
 			$pw = $password;
 			$mail = $email;
+			$statement->execute();
+			$statement->close();
+		}
+	}
+	
+	function addComment($komentar)
+	{
+		$connection = connect_to_db();
+		$queryInsert = "INSERT INTO komentari(novost, datum, email, tekst_komentara, autor) VALUES(?, curdate(), ?, ?, ?)";
+		
+		if($statement = $connection->prepare($queryInsert))
+		{
+			$statement->bind_param('isss', $novost, $email, $tekst, $autor);
+			$novost = $komentar["ID"];
+			$email = $komentar["Email"];
+			$tekst = $komentar["Poruka"];
+			$autor = $komentar["Autor"];
 			$statement->execute();
 			$statement->close();
 		}
@@ -196,5 +291,46 @@
 			$korisnikStatement->close();
 		}
 	}
+	
+	$method = $_SERVER['REQUEST_METHOD'];
+	$request = $_SERVER['REQUEST_URI'];
+	switch ($method) {
+		case 'GET':
+			zag (); 
+			$akcija = $_GET["akcija"];
+			if($akcija == "dajSveVijesti")
+			{
+				echo getAllVijesti();
+			}
+			else if($akcija == "dajKomentareZaVijest")
+			{
+				$idVijesti = $_GET["novost"];
+				echo getAllCommentsForSingleNews($idVijesti);
+			}
+			else if($akcija == "dajDetaljnijeZaVijest")
+			{
+				$idVijesti = $_GET["novost"];
+				echo getDetaljnijeForNewsItem($idVijesti);
+			}
+			else if($akcija == "dajBrojKomentara")
+			{
+				echo getCommentCount();
+			}
+			break;
+		case 'POST':
+			zag();
+			$akcija = $_POST["akcija"];
+			if($akcija == "dodajKomentar")
+			{
+				$toInsert = json_decode($_POST["komentar"], true);
+				echo $_POST["komentar"];
+				addComment($toInsert);
+			}
+			break;
+		default :
+			header("{$_SERVER ['SERVER_PROTOCOL']} 404 Not Found");
+	}
+	
+	
 
 ?>

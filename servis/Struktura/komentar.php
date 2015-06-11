@@ -7,6 +7,7 @@
     <script type="text/javascript" src="/servis/Skripte/dropit.js"></script>
     <script type="text/javascript" src="/servis/Skripte/SinglePageConversion.js"></script>
 	<script type="text/javascript" src="/servis/Skripte/popupOperations.js"></script>
+	<script type="text/javascript" src="/servis/Skripte/rest_functions.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Granulo - RE d.o.o</title>
 </head>
@@ -31,7 +32,7 @@
 				<textarea name="Komentar" class="individualFormElement" id="komentar_input"> 
                 </textarea><br>
 				<input type="hidden" id="idvijesti" name="idVijesti" value="<?php if(isset($_GET["idVijesti"])) echo $_GET["idVijesti"]; ?>"/><br>
-				<input type="submit" class="individualFormElement" id="commentSubmit" name="commentSubmit" value="Ostavi komentar">
+				<input type="button" class="individualFormElement" id="commentSubmit" name="commentSubmit" onclick="dodajKomentar(); return false;" value="Ostavi komentar">
 			</form>
          </div>
         </div>

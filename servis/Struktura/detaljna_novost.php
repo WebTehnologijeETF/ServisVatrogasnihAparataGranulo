@@ -28,7 +28,7 @@
 				echo '<img src="' . $news_item["Slika"] . '" class="news_image" alt=" ">';
 				echo '</div>';
 				echo '<h1 class="news_header">' . $news_item["Naslov"] . '</h1>';
-				echo '<p class="authorsAndDate">Autor: ' . $news_item["Autor"] . ' ' . 'Datum i vrijeme objave: ' . date("d.m.y h:i", $news_item["Vrijeme"]) . '</p>';
+				echo '<p class="authorsAndDate">Autor: ' . $news_item["Autor"] . ' ' . 'Datum i vrijeme objave: ' . date("d.m.y h:i", strtotime($news_item["Vrijeme"])) . '</p>';
 				echo '<p class="news_item">' . $news_item["Opis"] . $news_item["Detaljnije"] . '</p>';
 				echo '</article>';
 			?>
